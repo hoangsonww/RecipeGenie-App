@@ -206,7 +206,6 @@ function showMealInfo(mealData) {
 }
 
 searchBtn.addEventListener("click", async () => {
-    // clean container
     mealsEl.innerHTML = "";
 
     const search = searchTerm.value;
@@ -216,6 +215,22 @@ searchBtn.addEventListener("click", async () => {
         meals.forEach((meal) => {
             addMeal(meal);
         });
+    }
+});
+
+searchTerm.addEventListener("keydown", async(e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        mealsEl.innerHTML = "";
+
+        const search = searchTerm.value;
+        const meals = await getMealsBySearch(search);
+
+        if (meals) {
+            meals.forEach((meal) => {
+                addMeal(meal);
+            });
+        }
     }
 });
 
@@ -237,7 +252,12 @@ function shareOnTwitter() {
 
 const heading = document.getElementById('h1');
 const subhead = document.getElementById('h3');
-const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#00ffff', '#ff00ff'];
+const colors = ['#ff0000',
+    '#00ff00',
+    '#0000ff',
+    '#ffff00',
+    '#00ffff',
+    '#ff00ff'];
 let timeoutID;
 
 function changeBackgroundColor(event) {
