@@ -1,4 +1,5 @@
 #The Recipe-Genie App
+#The Recipe-Genie App
 Introducing RecipeGenie, your personal recipe assistant that helps you discover new and delicious meals. Our app is designed to provide you with a wide range of recipe options for every mealtime, so you never have to struggle with meal planning or wonder what to cook for dinner again.
 
 With RecipeGenie, you can easily search for recipes based on your dietary preferences, ingredient availability, and cooking time. Whether you're a vegan, vegetarian, or follow a specific diet, RecipeGenie has you covered with a variety of options.
