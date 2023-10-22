@@ -27,7 +27,7 @@
         <ul class="fav-meals" id="fav-meals"></ul>
     </div>
     <div class="meals" id="meals"></div>
-    <button class="return-to-home-btn" onclick="window.location.href='index.html'">Return to Home</button>
+    <button class="return-to-home-btn" onclick="window.location.href='index.html'">Scroll to Top</button>
     <h5>Like this app? Share it on your timeline to support us!</h5>
     <button class="return-to-home-btn" onclick="shareOnFacebook()">Share on Facebook</button>
     <br>
@@ -42,6 +42,16 @@
         </button>
         <div class="meal-info" id="meal-info"></div>
     </div>
+</div>
+
+<div id="chatbotContainer">
+    <div id="chatbotHeader">RecipeGenie Chatbot
+        <button id="minimizeChatbot" title="Minimize/Maximize Chat" style="float:right; background: none; border: none; margin-top: -7px">
+            <i class="fas fa-window-minimize"></i>
+        </button>
+    </div>
+    <div id="chatbotBody"></div>
+    <input id="chatbotInput" type="text" placeholder="Ask me something...">
 </div>
 
 </body>

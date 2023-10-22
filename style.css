@@ -221,6 +221,11 @@ h5 {
     display: block;
     margin: auto;
     background-color: #c67ee0;
+    border: 1px solid #c67ee0;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    color: white;
+    padding: 8px 12px;
 }
 
 #h3-1 {
@@ -235,18 +240,63 @@ h5 {
     background-color: orange;
 }
 
-h5:hover {
-    color: orange;
+#chatbotContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    font-family: "Poppins", sans-serif;
+    margin-top: 10px;
 }
 
-h6:hover {
-    color: orange;
+#chatbotHeader {
+    background-color: #c67ee0;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
 }
 
-#search-term:hover {
-    background-color: coral;
+#chatbotBody {
+    overflow-y: auto;
+    max-height: 300px;
+    padding: 10px;
+    border-radius: 8px;
 }
 
-#search:hover {
-    background-color: coral;
+#chatbotInput {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    color: #2d2d2d;
+    background-color: #ece9e6;
+    border-radius: 8px;
+}
+
+#chatbotInput::placeholder {
+    color: #a3a3a3;
+}
+
+button {
+    background-color: #c67ee0;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #eab0ff;
+}
+
+#minimizeChatbot {
+    color: white; /* match the header text color */
+    cursor: pointer;
+}
+
+#minimizeChatbot:hover {
+    color: #e07ed0; /* give it a hover effect */
 }
