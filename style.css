@@ -228,6 +228,18 @@ h5 {
     padding: 8px 12px;
 }
 
+.recipe-of-the-day-container {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f7e1ff;
+    margin: 1rem;
+    border-radius: 8px;
+}
+
+.recipe-of-the-day-container .meal {
+    margin: auto;
+}
+
 #h3-1 {
     color: #2d2d2d;
 }
@@ -237,7 +249,7 @@ h5 {
 }
 
 .return-to-home-btn:hover {
-    background-color: orange;
+    background-color: #e07ed0;
 }
 
 #chatbotContainer {
@@ -286,6 +298,8 @@ button {
     color: white;
     text-align: center;
     border-radius: 8px;
+    border: none;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -299,4 +313,41 @@ button:hover {
 
 #minimizeChatbot:hover {
     color: #e07ed0; /* give it a hover effect */
+}
+
+#timer-container {
+    text-align: center;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+#timer-input {
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#timer-start-btn {
+    padding: 0.5rem 1rem;
+    background-color: #c67ee0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#timer-start-btn:hover {
+    background-color: #e07ed0;
+}
+
+#active-timers {
+    list-style: none;
+    padding: 0;
+}
+
+#active-timers li {
+    background-color: #eee;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
 }

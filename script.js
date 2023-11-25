@@ -72,7 +72,7 @@ function addMeal(mealData, random = false) {
         </div>
         <div class="meal-body">
             <h4>${mealData.strMeal}</h4>
-            <button class="fav-btn">
+            <button class="fav-btn" title="Add to Favorites">
                 <i class="fas fa-heart"></i>
             </button>
         </div>
@@ -254,37 +254,6 @@ function shareOnTwitter() {
     window.open(shareUrl, '_blank');
 }
 
-const heading = document.getElementById('h1');
-const subhead = document.getElementById('h3');
-const colors = ['#ff0000',
-    '#00ff00',
-    '#0000ff',
-    '#ffff00',
-    '#00ffff',
-    '#ff00ff'];
-let timeoutID;
-
-function changeBackgroundColor(event) {
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    event.target.style.color = randomColor;
-    timeoutID = setTimeout(resetBackgroundColor, 500);
-}
-
-function resetBackgroundColor(event) {
-    event.target.style.color = "hotpink";
-    clearTimeout(timeoutID);
-}
-
-function resetBackgroundColor2(event) {
-    event.target.style.color = "lightpink";
-    clearTimeout(timeoutID);
-}
-
-heading.addEventListener('mouseover', changeBackgroundColor);
-heading.addEventListener('mouseout', resetBackgroundColor);
-subhead.addEventListener('mouseover', changeBackgroundColor);
-subhead.addEventListener('mouseout', resetBackgroundColor2);
-
 function elizaResponse(message) {
     const lowerMessage = message.toLowerCase();
     if (lowerMessage.includes("hello") || lowerMessage.includes("hi")) {
@@ -416,3 +385,159 @@ minimizeBtn.addEventListener("click", function() {
     isMinimized = !isMinimized;
 });
 
+const seasonalRecipes = {
+    spring: ['salad', 'asparagus', 'lemon chicken'],
+    summer: ['grilled', 'avocado', 'berries'],
+    autumn: ['pumpkin', 'squash', 'stew'],
+    winter: ['soup', 'roast', 'hot chocolate']
+};
+
+const dayOfWeekRecipes = {
+    Monday: 'vegetarian',
+    Tuesday: 'chicken',
+    Wednesday: 'beef',
+    Thursday: 'seafood',
+    Friday: 'pasta',
+    Saturday: 'stew',
+    Sunday: 'dessert'
+};
+
+function getSeason() {
+    const month = new Date().getMonth();
+    if (month >= 2 && month <= 4) {
+        return 'spring';
+    } else if (month >= 5 && month <= 7) {
+        return 'summer';
+    } else if (month >= 8 && month <= 10) {
+        return 'autumn';
+    } else {
+        return 'winter';
+    }
+}
+
+function getDayOfWeek() {
+    return new Date().toLocaleDateString('en-US', { weekday: 'long' });
+}
+
+async function fetchRecipeOfTheDay() {
+    const today = new Date().toDateString(); // Get current date as a string
+    let savedRecipe = localStorage.getItem('recipeOfTheDay');
+    savedRecipe = savedRecipe ? JSON.parse(savedRecipe) : null;
+
+    // Check if the saved recipe is from today, else fetch a new one
+    if (!savedRecipe || savedRecipe.date !== today) {
+        const season = getSeason();
+        const dayOfWeek = getDayOfWeek();
+        const searchTerm = dayOfWeekRecipes[dayOfWeek];
+        const seasonalIngredient = seasonalRecipes[season][Math.floor(Math.random() * seasonalRecipes[season].length)];
+        const recipeKeyword = searchTerm + ',' + seasonalIngredient;
+
+        const resp = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${recipeKeyword}`);
+        const respData = await resp.json();
+        let meals = respData.meals;
+
+        // If no meals found, fall back to a random meal
+        if (!meals || meals.length === 0) {
+            const randomResp = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
+            const randomData = await randomResp.json();
+            meals = randomData.meals;
+        }
+
+        const recipe = meals[Math.floor(Math.random() * meals.length)];
+
+        savedRecipe = { date: today, data: recipe };
+        localStorage.setItem('recipeOfTheDay', JSON.stringify(savedRecipe));
+        displayRecipeOfTheDay(recipe);
+    } else {
+        displayRecipeOfTheDay(savedRecipe.data);
+    }
+}
+
+function displayRecipeOfTheDay(recipe) {
+    const container = document.getElementById('recipe-of-the-day');
+    const mealId = recipe.idMeal || recipe.id;
+
+    container.innerHTML = `
+        <div class="meal" onclick="fetchAndShowMealInfo(${mealId})">
+            <div class="meal-header">
+                <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" />
+            </div>
+            <div class="meal-body">
+                <h4>${recipe.strMeal}</h4>
+                <button style="cursor: pointer" onclick="fetchAndShowMealInfo(${mealId})" class="detail-btn">View Details</button>
+            </div>
+        </div>
+    `;
+}
+
+async function fetchAndShowMealInfo(mealId) {
+    const mealData = await getMealById(mealId);
+    showMealInfo(mealData);
+}
+
+document.addEventListener('DOMContentLoaded', fetchRecipeOfTheDay);
+
+const timerContainer = document.getElementById('active-timers');
+
+document.getElementById('timer-start-btn').addEventListener('click', () => {
+    let minutes = parseInt(document.getElementById('timer-input').value);
+    if (isNaN(minutes) || minutes <= 0) {
+        alert('Please enter a valid number of minutes.');
+        return;
+    }
+
+    createTimer(minutes);
+});
+
+function createTimer(minutes) {
+    const endTime = new Date(new Date().getTime() + minutes * 60000);
+    const timerItem = document.createElement('li');
+    timerItem.innerText = `Timer set for ${minutes} minutes. Ends at ${endTime.toLocaleTimeString()}`;
+    timerContainer.appendChild(timerItem);
+
+    const interval = setInterval(() => {
+        const now = new Date();
+        const timeLeft = endTime.getTime() - now.getTime();
+
+        if (timeLeft <= 0) {
+            clearInterval(interval);
+            timerItem.innerText = `Timer done at ${now.toLocaleTimeString()}!`;
+            // You can add a notification sound or visual cue here to alert the user.
+        } else {
+            const minutesLeft = Math.floor(timeLeft / 60000);
+            const secondsLeft = Math.floor((timeLeft % 60000) / 1000);
+            timerItem.innerText = `${minutesLeft}m ${secondsLeft}s remaining`;
+        }
+    }, 1000);
+}
+
+// const heading = document.getElementById('h1');
+// const subhead = document.getElementById('h3');
+// const colors = ['#ff0000',
+//     '#00ff00',
+//     '#0000ff',
+//     '#ffff00',
+//     '#00ffff',
+//     '#ff00ff'];
+// let timeoutID;
+//
+// function changeBackgroundColor(event) {
+//     const randomColor = colors[Math.floor(Math.random() * colors.length)];
+//     event.target.style.color = randomColor;
+//     timeoutID = setTimeout(resetBackgroundColor, 500);
+// }
+//
+// function resetBackgroundColor(event) {
+//     event.target.style.color = "hotpink";
+//     clearTimeout(timeoutID);
+// }
+//
+// function resetBackgroundColor2(event) {
+//     event.target.style.color = "lightpink";
+//     clearTimeout(timeoutID);
+// }
+//
+// heading.addEventListener('mouseover', changeBackgroundColor);
+// heading.addEventListener('mouseout', resetBackgroundColor);
+// subhead.addEventListener('mouseover', changeBackgroundColor);
+// subhead.addEventListener('mouseout', resetBackgroundColor2);
