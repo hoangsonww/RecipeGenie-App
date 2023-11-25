@@ -492,21 +492,35 @@ document.getElementById('timer-start-btn').addEventListener('click', () => {
 function createTimer(minutes) {
     const endTime = new Date(new Date().getTime() + minutes * 60000);
     const timerItem = document.createElement('li');
-    timerItem.innerText = `Timer set for ${minutes} minutes. Ends at ${endTime.toLocaleTimeString()}`;
+    const endTimeSpan = document.createElement('span');
+    const countdownSpan = document.createElement('span');
+    const removeBtn = document.createElement('button');
+
+    removeBtn.innerText = 'Remove';
+    removeBtn.onclick = () => {
+        clearInterval(timerItem.intervalId);
+        timerItem.remove();
+    };
+
+    endTimeSpan.innerText = `Ends at ${endTime.toLocaleTimeString()} `;
+    countdownSpan.innerText = `${minutes}m 00s remaining`;
+
+    timerItem.appendChild(endTimeSpan);
+    timerItem.appendChild(countdownSpan);
+    timerItem.appendChild(removeBtn);
     timerContainer.appendChild(timerItem);
 
-    const interval = setInterval(() => {
+    timerItem.intervalId = setInterval(() => {
         const now = new Date();
         const timeLeft = endTime.getTime() - now.getTime();
 
         if (timeLeft <= 0) {
-            clearInterval(interval);
-            timerItem.innerText = `Timer done at ${now.toLocaleTimeString()}!`;
-            // You can add a notification sound or visual cue here to alert the user.
+            clearInterval(timerItem.intervalId);
+            countdownSpan.innerText = `Time's up!`;
         } else {
             const minutesLeft = Math.floor(timeLeft / 60000);
             const secondsLeft = Math.floor((timeLeft % 60000) / 1000);
-            timerItem.innerText = `${minutesLeft}m ${secondsLeft}s remaining`;
+            countdownSpan.innerText = `${minutesLeft}m ${secondsLeft}s remaining`;
         }
     }, 1000);
 }

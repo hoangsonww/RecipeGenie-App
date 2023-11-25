@@ -318,7 +318,9 @@ button:hover {
 #timer-container {
     text-align: center;
     padding: 1rem;
+    background-color: #f7e1ff;
     margin: 1rem;
+    border-radius: 8px;
 }
 
 #timer-input {
@@ -347,7 +349,82 @@ button:hover {
 }
 
 #active-timers li {
-    background-color: #eee;
+    background-color: white;
     margin-top: 0.5rem;
     padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+}
+
+#active-timers li span {
+    margin-right: 0.5rem;
+}
+
+#active-timers li button {
+    margin-left: 10px;
+    padding: 0.3rem 0.6rem;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#active-timers li button:hover {
+    background-color: #ff3b3b;
+}
+
+.about-section {
+    margin-bottom: 2rem;
+    padding: 20px;
+}
+
+.about-section h2 {
+    color: #c67ee0;
+}
+
+.about-section p,
+.about-section ul {
+    color: #333;
+    line-height: 1.6;
+}
+
+.about-section ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+footer button {
+    display: block;
+    margin: auto;
+    background-color: #c67ee0;
+    border: none;
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+footer button:hover {
+    background-color: #e07ed0;
+}
+
+#about-btn {
+    background-color: #c67ee0;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+
+    right: 20px;
+}
+
+#about-btn:hover {
+    background-color: #e07ed0;
 }
