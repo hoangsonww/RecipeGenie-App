@@ -14,6 +14,10 @@ getRandomMeal();
 getRandomMeal();
 getRandomMeal();
 getRandomMeal();
+getRandomMeal();
+getRandomMeal();
+getRandomMeal();
+getRandomMeal();
 fetchFavMeals();
 
 async function getRandomMeal() {
