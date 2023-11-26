@@ -376,11 +376,13 @@ minimizeBtn.addEventListener("click", function() {
         chatbotInput.style.display = "block";
         minimizeBtn.innerHTML = '<i class="fas fa-window-minimize"></i>';
         minimizeBtn.setAttribute('title', 'Minimize chatbot');
-    } else {
+    }
+    else {
         chatbotBody.style.display = "none";
         chatbotInput.style.display = "none";
         minimizeBtn.innerHTML = '<i class="fas fa-window-restore"></i>';
         minimizeBtn.setAttribute('title', 'Maximize chatbot');
+        minimizeBtn.style.marginTop = "-5px";
     }
     isMinimized = !isMinimized;
 });
@@ -524,6 +526,35 @@ function createTimer(minutes) {
         }
     }, 1000);
 }
+
+const tips = [
+    "To keep potatoes from sprouting, place an apple in the bag with the potatoes.",
+    "To prevent butter from over-browning in your pan, add a little bit of lemon juice.",
+    "Use a microplane to grate garlic, ginger, and hard cheeses.",
+    "For fluffier, whiter rice, add a teaspoon of lemon juice to the boiling water.",
+    "Let roasted meats rest before carving to keep them juicy.",
+    "Use yogurt instead of cream to thicken soups – it's healthier and gives a tangy flavor.",
+    "Marinate meat with acidic ingredients like vinegar or citrus to tenderize.",
+    "To ripen avocados quickly, place them in a paper bag with a banana.",
+    "Use parchment paper when baking for an easy cleanup.",
+    "Freeze herbs in olive oil in ice cube trays for future use.",
+    "To get more juice out of lemons or limes, roll them on the counter before squeezing.",
+    "Keep your spices away from sources of heat like the stove or lights to preserve their flavor.",
+    "To clean a grill, cut an onion in half and rub it over the grates.",
+    "Refresh limp vegetables by soaking them in ice water.",
+    "Soak wooden skewers in water for 30 minutes before grilling to prevent burning.",
+];
+
+document.getElementById('quick-tip-btn').addEventListener('click', function() {
+    const randomIndex = Math.floor(Math.random() * tips.length);
+    document.getElementById('tip-content').textContent = tips[randomIndex];
+    document.getElementById('tip-popover').classList.remove('hidden');
+});
+
+document.getElementById('close-tip').addEventListener('click', function() {
+    document.getElementById('tip-popover').classList.add('hidden');
+});
+
 
 // const heading = document.getElementById('h1');
 // const subhead = document.getElementById('h3');

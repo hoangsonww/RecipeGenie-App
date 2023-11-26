@@ -270,6 +270,7 @@ h5 {
     color: white;
     text-align: center;
     border-radius: 8px;
+    border-bottom: none;
 }
 
 #chatbotBody {
@@ -421,10 +422,53 @@ footer button:hover {
     border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
-
     right: 20px;
 }
 
 #about-btn:hover {
     background-color: #e07ed0;
+}
+
+#quick-tip-btn {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    background-color: #c67ee0;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1000; /* Ensure it's above other elements */
+}
+
+#quick-tip-btn:hover {
+    background-color: #e07ed0;
+}
+
+#tip-popover {
+    position: fixed;
+    left: 20px;
+    bottom: 60px; /* Positioned above the tip button */
+    background-color: white;
+    color: black;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000; /* Ensure it's above other elements */
+    width: 200px; /* Set a fixed width */
+}
+
+#tip-popover.hidden {
+    display: none;
+}
+
+#close-tip {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right; /* Aligns the close button to the right */
 }
