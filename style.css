@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: #ece9e6;
     background: -webkit-linear-gradient(to right, #ffffff, #ece9e6);
@@ -271,6 +275,8 @@ h5 {
     text-align: center;
     border-radius: 8px;
     border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 #chatbotBody {
@@ -336,7 +342,7 @@ button:hover {
     background-color: #c67ee0;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
@@ -431,8 +437,8 @@ footer button:hover {
 
 #quick-tip-btn {
     position: fixed;
+    top: 20px;
     left: 20px;
-    bottom: 20px;
     background-color: #c67ee0;
     border: none;
     color: white;
@@ -450,13 +456,13 @@ footer button:hover {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #ece9e6; /* Adjust background color as needed */
+    background-color: #ece9e6;
     color: #333;
     padding: 10px;
     border-radius: 8px;
     font-family: 'Poppins', sans-serif;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000; /* Make sure it's above other elements */
+    z-index: 1000;
     text-align: center;
 }
 
@@ -473,7 +479,7 @@ footer button:hover {
 #tip-popover {
     position: fixed;
     left: 20px;
-    bottom: 60px; /* Positioned above the tip button */
+    top: 55px; /* Positioned above the tip button */
     background-color: white;
     color: black;
     padding: 15px;
@@ -495,4 +501,179 @@ footer button:hover {
     border-radius: 5px;
     cursor: pointer;
     float: right; /* Aligns the close button to the right */
+}
+
+.conversion-tool {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #fdfcfc;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.seasonal-highlight {
+    background-color: #fff7e6; /* Light orange background for a 'fresh' feel */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    width: 200px;
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+
+.seasonal-highlight h3 {
+    text-align: center;
+    color: #e07ed0; /* Matching your app's color theme */
+}
+
+.seasonal-highlight p {
+    color: #333;
+    font-size: 0.9em;
+}
+
+#back-to-home-btn {
+    margin: auto;
+    background-color: #c67ee0;
+    border: 1px solid #c67ee0;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    color: white;
+    padding: 8px 12px;
+    margin-top: -20px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+#back-to-home-btn.visible {
+    display: block; /* To make the button visible */
+}
+
+#back-to-home-btn:hover {
+    background-color: #e07ed0; /* Lighter shade on hover */
+}
+
+.hidden {
+    display: none; /* Ensures elements with this class are not displayed */
+}
+
+#conversion-result {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#about-btn {
+    background-color: #c67ee0;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    right: 20px;
+}
+
+.conversion-tool h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#flavor-pair-popover {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-60%);
+    background-color: #f8f8f8;
+    color: black;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    width: 220px;
+    align-items: center;
+}
+
+#flavor-pair-popover h3 {
+    text-align: center;
+    color: #e07ed0; /* Pink color for the title */
+    margin-bottom: 10px;
+    margin-top: -2px;
+}
+
+#pair-results {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+#flavor-input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 2px solid #e07ed0;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    align-self: center;
+    transform: translateX(8%);
+}
+
+/* Default styles for mobile - hide elements */
+#quick-tip-btn,
+#clock,
+#chatbotContainer,
+#conversion-tool,
+#flavor-pair-popover,
+#seasonal-highlight {
+    display: none;
+}
+
+/* Styles for tablets and larger screens - show elements */
+@media (min-width: 768px) {
+    #quick-tip-btn,
+    #clock,
+    #chatbotContainer,
+    #conversion-tool,
+    #flavor-pair-popover,
+    #seasonal-highlight {
+        display: block;
+    }
+}
+
+input[type="text"], input[type="number"], input[type="email"], input[type="password"], input[type="tel"], input[type="url"], textarea,
+select {
+    width: 100%; /* Full width */
+    padding: 10px;
+    margin: 5px 0 20px 0;
+    border: 2px solid #e07ed0; /* Pink border */
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#scroll-top-btn {
+    display: block;
+    margin: auto;
+    background-color: #c67ee0;
+    border: 1px solid #c67ee0;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    color: white;
+    padding: 8px 12px;
+    margin-top: 20px;
+}
+
+#scroll-top-btn:hover {
+    background-color: #e07ed0; /* Lighter shade on hover */
 }

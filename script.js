@@ -17,7 +17,6 @@ getRandomMeal();
 getRandomMeal();
 getRandomMeal();
 getRandomMeal();
-getRandomMeal();
 fetchFavMeals();
 
 async function getRandomMeal() {
@@ -142,7 +141,7 @@ function addMealFav(mealData) {
             src="${mealData.strMealThumb}"
             alt="${mealData.strMeal}"
         /><span>${mealData.strMeal}</span>
-        <button class="clear"><i class="fas fa-window-close"></i></button>
+        <button class="clear" style="color: red"><i class="fas fa-window-close"></i></button>
     `;
 
     const btn = favMeal.querySelector(".clear");
@@ -220,6 +219,8 @@ searchBtn.addEventListener("click", async () => {
             addMeal(meal);
         });
     }
+    document.getElementById('back-to-home-btn').classList.add('visible');
+    document.getElementById('back-to-home-btn').style.display = 'block';
 });
 
 searchTerm.addEventListener("keydown", async(e) => {
@@ -235,7 +236,24 @@ searchTerm.addEventListener("keydown", async(e) => {
                 addMeal(meal);
             });
         }
+        document.getElementById('back-to-home-btn').classList.add('visible');
+        document.getElementById('back-to-home-btn').style.display = 'block';
     }
+});
+
+function resetToHomepage() {
+    document.getElementById('search-term').value = '';
+    mealsEl.innerHTML = '';
+    for (let i = 0; i < 10; i++) {
+        getRandomMeal();
+    }
+    document.getElementById('back-to-home-btn').classList.add('hidden');
+}
+
+document.getElementById('back-to-home-btn').addEventListener('click', () => {
+    const backToHomeBtn = document.getElementById('back-to-home-btn');
+    backToHomeBtn.style.display = 'none';
+    resetToHomepage();
 });
 
 popupCloseBtn.addEventListener("click", () => {
@@ -567,6 +585,210 @@ document.getElementById('close-tip').addEventListener('click', function() {
     document.getElementById('tip-popover').classList.add('hidden');
 });
 
+document.getElementById('convert-btn').addEventListener('click', function() {
+    const conversionType = document.getElementById('conversion-type').value;
+    const valueToConvert = parseFloat(document.getElementById('conversion-input').value);
+    let result;
+
+    if (isNaN(valueToConvert)) {
+        alert('Please enter a valid number.');
+        return;
+    }
+
+    switch (conversionType) {
+        case 'tablespoons-teaspoons':
+            result = valueToConvert * 3;
+            break;
+        case 'teaspoons-tablespoons':
+            result = valueToConvert / 3;
+            break;
+        case 'cups-milliliters':
+            result = valueToConvert * 236.588;
+            break;
+        case 'milliliters-cups':
+            result = valueToConvert / 236.588;
+            break;
+        case 'fahrenheit-celsius':
+            result = (valueToConvert - 32) * 5/9;
+            break;
+        case 'celsius-fahrenheit':
+            result = (valueToConvert * 9/5) + 32;
+            break;
+        case 'pounds-kilograms':
+            result = valueToConvert * 0.453592;
+            break;
+        case 'kilograms-pounds':
+            result = valueToConvert / 0.453592;
+            break;
+        case 'ounces-grams':
+            result = valueToConvert * 28.3495;
+            break;
+        case 'grams-ounces':
+            result = valueToConvert / 28.3495;
+            break;
+        case 'liters-quarts':
+            result = valueToConvert * 1.05669;
+            break;
+        case 'quarts-liters':
+            result = valueToConvert / 1.05669;
+            break;
+        case 'gallons-liters':
+            result = valueToConvert * 3.78541;
+            break;
+        case 'liters-gallons':
+            result = valueToConvert / 3.78541;
+            break;
+        case 'tablespoons-milliliters':
+            result = valueToConvert * 14.7868;
+            break;
+        case 'milliliters-tablespoons':
+            result = valueToConvert / 14.7868;
+            break;
+    }
+
+    document.getElementById('conversion-result').textContent = `Result: ${result.toFixed(2)}`;
+});
+
+function getSeason() {
+    const month = new Date().getMonth();
+    if (month >= 2 && month <= 4) {
+        return 'spring';
+    }
+    else if (month >= 5 && month <= 7) {
+        return 'summer';
+    }
+    else if (month >= 8 && month <= 10) {
+        return 'autumn';
+    }
+    else {
+        return 'winter';
+    }
+}
+
+function updateSeasonalIngredients() {
+    const season = getSeason();
+    const ingredients = {
+        spring: ['asparagus', 'peas', 'mint', 'strawberries', 'rhubarb'],
+        summer: ['tomatoes', 'bell peppers', 'cucumbers', 'peaches', 'watermelon'],
+        autumn: ['pumpkins', 'apples', 'sweet potatoes', 'brussels sprouts', 'cranberries'],
+        winter: ['kale', 'citrus fruits', 'pomegranates', 'squash', 'beets']
+    };
+
+    const seasonalIngredientsElement = document.getElementById('seasonal-ingredients');
+    seasonalIngredientsElement.textContent = ingredients[season].join(', ');
+}
+
+// Call this function when the app loads and possibly at set intervals to update the ingredients list
+updateSeasonalIngredients();
+
+// A simple example flavor pairing map
+// An expanded map of flavor pairs
+const flavorPairs = {
+    apple: "cinnamon",
+    salmon: "dill",
+    chocolate: "orange",
+    chicken: "thyme",
+    beef: "rosemary",
+    pork: "apple",
+    carrot: "ginger",
+    tomato: "basil",
+    strawberry: "balsamic",
+    lemon: "lavender",
+    shrimp: "garlic",
+    mushroom: "parsley",
+    spinach: "nutmeg",
+    banana: "walnut",
+    blueberry: "lemon",
+    egg: "black pepper",
+    potato: "rosemary",
+    avocado: "lime",
+    lime: "cilantro",
+    coffee: "vanilla",
+    pear: "blue cheese",
+    honey: "ginger",
+    orange: "chocolate",
+    watermelon: "feta",
+    mint: "chocolate",
+    pineapple: "coconut",
+    peach: "balsamic",
+    pumpkin: "nutmeg",
+    cherry: "almond",
+    asparagus: "lemon",
+    blackberry: "ginger",
+    raspberry: "chocolate",
+    cranberry: "orange",
+    fig: "goat cheese",
+    grape: "blue cheese",
+    mango: "lime",
+    artichoke: "lemon",
+    apricot: "almond",
+    brie: "apple",
+    cabbage: "caraway",
+    cantaloupe: "prosciutto",
+    cauliflower: "cumin",
+    celery: "blue cheese",
+    cheddar: "apple",
+    coconut: "lime",
+    corn: "cilantro",
+    cucumber: "dill",
+    fennel: "orange",
+    garlic: "basil",
+    grapefruit: "mint",
+    hazelnut: "chocolate",
+    jalapeno: "cilantro",
+    kale: "lemon",
+    kiwi: "strawberry",
+    lentil: "cumin",
+    olive: "rosemary",
+    onion: "thyme",
+    parmesan: "balsamic",
+    plum: "cinnamon",
+    pomegranate: "mint",
+    radish: "butter",
+    raisin: "cinnamon",
+    ricotta: "lemon",
+    sage: "butternut squash",
+    tarragon: "chicken",
+    watercress: "orange",
+};
+
+document.getElementById('flavor-input').addEventListener('input', function() {
+    const ingredient = this.value.trim().toLowerCase();
+    const results = document.getElementById('pair-results');
+    if (ingredient && flavorPairs[ingredient]) {
+        results.textContent = `Pairs with: ${flavorPairs[ingredient]}`;
+    } else if (ingredient) {
+        results.textContent = "No pair found. Try a different ingredient.";
+    } else {
+        results.textContent = "Enter an ingredient to see its pair.";
+    }
+});
+
+document.getElementById('get-more-btn').addEventListener('click', async () => {
+    // Fetch and add 5 more random meals
+    for (let i = 0; i < 5; i++) {
+        await getRandomMeal();
+    }
+});
+
+async function getRandomMeal() {
+    try {
+        const resp = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
+        const respData = await resp.json();
+        const randomMeal = respData.meals[0];
+        addMeal(randomMeal, true);
+    } catch (error) {
+        console.error('Error fetching random meal:', error);
+    }
+}
+
+document.getElementById('scroll-top-btn').addEventListener('click', () => {
+    // Use window.scrollTo with behavior smooth for a smooth scroll
+    window.scrollTo({
+        top: 0, // Scroll to the top of the page
+        behavior: 'smooth' // Smooth scroll
+    });
+});
 
 // const heading = document.getElementById('h1');
 // const subhead = document.getElementById('h3');
