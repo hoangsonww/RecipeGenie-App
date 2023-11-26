@@ -446,6 +446,30 @@ footer button:hover {
     background-color: #e07ed0;
 }
 
+.clock {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #ece9e6; /* Adjust background color as needed */
+    color: #333;
+    padding: 10px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000; /* Make sure it's above other elements */
+    text-align: center;
+}
+
+#clock-title {
+    display: block; /* Makes the title appear on its own line */
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+#clock-time {
+    font-size: 1.2em; /* Larger text for the actual time */
+}
+
 #tip-popover {
     position: fixed;
     left: 20px;
