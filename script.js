@@ -19,6 +19,89 @@ getRandomMeal();
 getRandomMeal();
 fetchFavMeals();
 
+const nutritionalTips = [
+    "Eating a variety of fruits and vegetables provides essential nutrients and fiber.",
+    "Incorporate whole grains instead of refined grains for more nutrients and fiber.",
+    "Stay hydrated by drinking plenty of water, especially in hot weather or when exercising.",
+    "Opt for lean protein sources like poultry, fish, beans, and nuts.",
+    "Limit added sugars and salt in your diet to maintain a healthy heart and weight.",
+    "Healthy fats such as those found in avocados, olive oil, and nuts are beneficial in moderation.",
+    "Regularly including fish in your diet can contribute to heart health due to omega-3 fatty acids.",
+    "Balance is key in diet; all food groups have something to offer nutritionally.",
+    "Snack on nuts, seeds, or fruits rather than processed snacks for healthier alternatives.",
+    "Include probiotic-rich foods like yogurt in your diet for digestive health.",
+    "Try to eat a rainbow of fruits and vegetables to get a variety of vitamins and minerals.",
+    "Reduce caffeine intake and drink herbal teas to stay hydrated and calm.",
+    "Choose lean cuts of meat and skinless poultry to reduce fat intake.",
+    "Experiment with plant-based proteins like tofu and tempeh for variety and health benefits.",
+    "Avoid processed foods and opt for whole foods instead to reduce sodium intake.",
+    "Try to eat a variety of foods to get a range of nutrients.",
+    "Limit alcohol intake to reduce calories and improve health.",
+    "Eat mindfully by paying attention to your food and enjoying each bite.",
+    "Try to eat at least five servings of fruits and vegetables per day.",
+    "Avoid sugary drinks and opt for water, tea, or coffee instead.",
+    "Try to eat at least three servings of whole grains per day.",
+    "Limit red meat intake and opt for leaner sources of protein.",
+    "Try to eat at least two servings of fish per week.",
+    "Cook at home more often to control ingredients and portions.",
+    "Read nutrition labels to make informed choices about what you eat.",
+    "Try to eat at least three servings of dairy per day.",
+    "Try to eat at least two servings of legumes per week.",
+    "Try to eat at least two servings of nuts and seeds per week.",
+    "Try to eat at least two servings of eggs per week.",
+    "Try to eat at least two servings of poultry per week.",
+    "Try to eat at least two servings of tofu per week.",
+    "Try to eat at least two servings of tempeh per week.",
+    "Try to eat at least two servings of whole grains per day.",
+    "Try to eat at least two servings of berries per week.",
+    "Try to eat at least two servings of cruciferous vegetables per week.",
+    "Try to eat at least two servings of leafy greens per week.",
+    "Try to eat at least two servings of citrus fruits per week.",
+    "Try to eat at least two servings of root vegetables per week.",
+    "Try to eat at least two servings of allium vegetables per week.",
+    "Try to eat at least two servings of nightshade vegetables per week.",
+];
+
+let isTipExpanded = true;
+
+function displayNutritionalTip() {
+    const tipContent = document.getElementById('nutritional-tip-content');
+    if (!tipContent) {
+        console.error('Nutritional tip content element not found');
+        return;
+    }
+    tipContent.textContent = nutritionalTips[currentTipIndex];
+}
+
+function toggleTipView() {
+    const tipContent = document.getElementById('nutritional-tip-content');
+    const toggleButton = document.getElementById('toggle-nutritional-tip');
+
+    if (isTipExpanded) {
+        tipContent.style.display = 'none';
+        toggleButton.textContent = 'Expand';
+    }
+    else {
+        tipContent.style.display = 'block';
+        toggleButton.textContent = 'Close';
+    }
+
+    isTipExpanded = !isTipExpanded;
+}
+
+let currentTipIndex = new Date().getDay();
+
+document.getElementById('next-nutritional-tip').addEventListener('click', function() {
+    currentTipIndex = (currentTipIndex + 1) % nutritionalTips.length;
+    displayNutritionalTip();
+});
+
+document.getElementById('toggle-nutritional-tip').addEventListener('click', toggleTipView);
+
+document.addEventListener('DOMContentLoaded', function() {
+    displayNutritionalTip();
+});
+
 async function getMealById(id) {
     const resp = await fetch(
         "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id
@@ -42,7 +125,6 @@ async function getMealsBySearch(term) {
 }
 
 function addMeal(mealData, random = false) {
-    console.log(mealData);
 
     const meal = document.createElement("div");
     meal.classList.add("meal");
@@ -266,7 +348,7 @@ function shareOnTwitter() {
 
 function elizaResponse(message) {
     const lowerMessage = message.toLowerCase();
-    if (lowerMessage.includes("hello") || lowerMessage.includes("hi")) {
+    if (lowerMessage.includes("hello") || lowerMessage.includes("hi") || lowerMessage.includes("hey")) {
         return "Hello! Ready to cook something delicious with RecipeGenie?";
     } else if (lowerMessage.includes("how are you")) {
         return "I'm excited to explore tasty recipes with you! What are you in the mood for?";
@@ -414,19 +496,6 @@ const dayOfWeekRecipes = {
     Sunday: 'dessert'
 };
 
-function getSeason() {
-    const month = new Date().getMonth();
-    if (month >= 2 && month <= 4) {
-        return 'spring';
-    } else if (month >= 5 && month <= 7) {
-        return 'summer';
-    } else if (month >= 8 && month <= 10) {
-        return 'autumn';
-    } else {
-        return 'winter';
-    }
-}
-
 function getDayOfWeek() {
     return new Date().toLocaleDateString('en-US', { weekday: 'long' });
 }
@@ -497,7 +566,6 @@ document.getElementById('timer-start-btn').addEventListener('click', () => {
         alert('Please enter a valid number of minutes.');
         return;
     }
-
     createTimer(minutes);
 });
 
@@ -529,12 +597,22 @@ function createTimer(minutes) {
         if (timeLeft <= 0) {
             clearInterval(timerItem.intervalId);
             countdownSpan.innerText = `Time's up!`;
-        } else {
+            playSound('timer-sound.mp3');
+            setTimeout(function() {
+                alert("Timer complete!");
+            }, 100);
+        }
+        else {
             const minutesLeft = Math.floor(timeLeft / 60000);
             const secondsLeft = Math.floor((timeLeft % 60000) / 1000);
             countdownSpan.innerText = `${minutesLeft}m ${secondsLeft}s remaining`;
         }
     }, 1000);
+}
+
+function playSound(filename) {
+    const audio = new Audio(filename);
+    audio.play();
 }
 
 const tips = [
@@ -676,11 +754,8 @@ function updateSeasonalIngredients() {
     seasonalIngredientsElement.textContent = ingredients[season].join(', ');
 }
 
-// Call this function when the app loads and possibly at set intervals to update the ingredients list
 updateSeasonalIngredients();
 
-// A simple example flavor pairing map
-// An expanded map of flavor pairs
 const flavorPairs = {
     apple: "cinnamon",
     salmon: "dill",

@@ -634,18 +634,22 @@ footer button:hover {
 #chatbotContainer,
 #conversion-tool,
 #flavor-pair-popover,
-#seasonal-highlight {
+#seasonal-highlight,
+#kitchen-inventory-tracker,
+.daily-nutritional-tip {
     display: none;
 }
 
 /* Styles for tablets and larger screens - show elements */
-@media (min-width: 768px) {
+@media (min-width: 1230px) {
     #quick-tip-btn,
     #clock,
     #chatbotContainer,
     #conversion-tool,
     #flavor-pair-popover,
-    #seasonal-highlight {
+    #seasonal-highlight,
+    #kitchen-inventory-tracker,
+    .daily-nutritional-tip {
         display: block;
     }
 }
@@ -676,5 +680,47 @@ select {
 }
 
 #scroll-top-btn:hover {
-    background-color: #e07ed0; /* Lighter shade on hover */
+    background-color: #e07ed0;
+}
+
+/* Nutritional Tip Section Styling */
+.daily-nutritional-tip {
+    background-color: #f3f3f3;
+    box-shadow: 0 0 10px 2px #3333331a;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    position: fixed;
+    right: 20px;
+    top: 100px;
+    width: auto;
+    z-index: 1000;
+}
+
+.daily-nutritional-tip h3 {
+    font-size: 1.1rem;
+    color: #c67ee0;
+    margin-bottom: 0.5rem;
+}
+
+#nutritional-tip-content {
+    font-size: 0.9rem;
+    color: #333;
+    line-height: 1.4;
+}
+
+/* Close Button for Nutritional Tip */
+#close-nutritional-tip {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+    margin-top: 5px;
+}
+
+#close-nutritional-tip:hover {
+    background-color: #ff3b3b;
 }
