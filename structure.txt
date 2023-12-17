@@ -1,0 +1,28 @@
+recipegenie/
+│
+├── recipegenie/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+│
+├── app/
+│   ├── migrations/
+│   │   ├── __init__.py
+│   │
+│   ├── templates/
+│   │   ├── index.html
+│   │
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+│
+├── manage.py
+└── requirements.txt
+```

@@ -19,15 +19,6 @@ getRandomMeal();
 getRandomMeal();
 fetchFavMeals();
 
-async function getRandomMeal() {
-    const resp = await fetch(
-        "https://www.themealdb.com/api/json/v1/1/random.php"
-    );
-    const respData = await resp.json();
-    const randomMeal = respData.meals[0];
-    addMeal(randomMeal, true);
-}
-
 async function getMealById(id) {
     const resp = await fetch(
         "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id
@@ -83,7 +74,8 @@ function addMeal(mealData, random = false) {
         if (btn.classList.contains("active")) {
             removeMealLS(mealData.idMeal);
             btn.classList.remove("active");
-        } else {
+        }
+        else {
             addMealLS(mealData.idMeal);
             btn.classList.add("active");
         }
@@ -553,6 +545,8 @@ const tips = [
     "Let roasted meats rest before carving to keep them juicy.",
     "Use yogurt instead of cream to thicken soups – it's healthier and gives a tangy flavor.",
     "Marinate meat with acidic ingredients like vinegar or citrus to tenderize.",
+    "To keep your brown sugar soft, store it with a slice of bread.",
+    "Grate cold butter to make it easier to spread.",
     "To ripen avocados quickly, place them in a paper bag with a banana.",
     "Use parchment paper when baking for an easy cleanup.",
     "Freeze herbs in olive oil in ice cube trays for future use.",
@@ -561,6 +555,10 @@ const tips = [
     "To clean a grill, cut an onion in half and rub it over the grates.",
     "Refresh limp vegetables by soaking them in ice water.",
     "Soak wooden skewers in water for 30 minutes before grilling to prevent burning.",
+    "To keep your cutting board from slipping, place a damp paper towel underneath.",
+    "To keep brown sugar soft, add a slice of bread to the container.",
+    "To keep cookies soft, store them with a slice of bread.",
+    "To keep bananas from browning, wrap the stems in plastic wrap.",
 ];
 
 function updateClock() {
@@ -777,7 +775,8 @@ async function getRandomMeal() {
         const respData = await resp.json();
         const randomMeal = respData.meals[0];
         addMeal(randomMeal, true);
-    } catch (error) {
+    }
+    catch (error) {
         console.error('Error fetching random meal:', error);
     }
 }
@@ -788,6 +787,49 @@ document.getElementById('scroll-top-btn').addEventListener('click', () => {
         top: 0, // Scroll to the top of the page
         behavior: 'smooth' // Smooth scroll
     });
+});
+
+const leftoverInput = document.getElementById('leftover-ingredients-input');
+const findRecipesButton = document.getElementById('find-recipes-button');
+const leftoverRecipesContainer = document.getElementById('leftover-recipes');
+
+async function fetchRecipesWithIngredients(ingredients) {
+    try {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredients}`);
+        const data = await response.json();
+        return data.meals; // Returns an array of meals
+    } catch (error) {
+        console.error('Error fetching recipes:', error);
+        return [];
+    }
+}
+
+function displayRecipes(recipes) {
+    leftoverRecipesContainer.innerHTML = ''; // Clear previous results
+    recipes.forEach(recipe => {
+        const recipeElement = document.createElement('div');
+        recipeElement.className = 'meal';
+        recipeElement.innerHTML = `
+            <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" />
+            <h4>${recipe.strMeal}</h4>
+        `;
+        leftoverRecipesContainer.appendChild(recipeElement);
+    });
+}
+
+findRecipesButton.addEventListener('click', async () => {
+    const ingredients = leftoverInput.value.trim().replace(/\s*,\s*/g, ',');
+    if (!ingredients) {
+        alert('Please enter some ingredients.');
+        return;
+    }
+    const recipes = await fetchRecipesWithIngredients(ingredients);
+    if (recipes && recipes.length > 0) {
+        displayRecipes(recipes);
+    }
+    else {
+        leftoverRecipesContainer.innerHTML = '<p>No recipes found. Try different ingredients.</p>';
+    }
 });
 
 // const heading = document.getElementById('h1');
