@@ -456,7 +456,7 @@ footer button:hover {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #ece9e6;
+    background-color: #f8f8f8;
     color: #333;
     padding: 10px;
     border-radius: 8px;
@@ -530,7 +530,7 @@ footer button:hover {
 
 .seasonal-highlight h3 {
     text-align: center;
-    color: #e07ed0; /* Matching your app's color theme */
+    color: #e07ed0;
 }
 
 .seasonal-highlight p {
@@ -685,7 +685,7 @@ select {
 
 /* Nutritional Tip Section Styling */
 .daily-nutritional-tip {
-    background-color: #f3f3f3;
+    background-color: #f8f8f8;
     box-shadow: 0 0 10px 2px #3333331a;
     border-radius: 8px;
     padding: 1rem;

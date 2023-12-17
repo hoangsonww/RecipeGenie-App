@@ -60,6 +60,7 @@ const nutritionalTips = [
     "Try to eat at least two servings of root vegetables per week.",
     "Try to eat at least two servings of allium vegetables per week.",
     "Try to eat at least two servings of nightshade vegetables per week.",
+    "Try to eat at least two servings of tropical fruits per week.",
 ];
 
 let isTipExpanded = true;
