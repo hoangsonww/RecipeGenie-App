@@ -724,3 +724,7 @@ select {
 #close-nutritional-tip:hover {
     background-color: #ff3b3b;
 }
+
+.link-button {
+    text-align: center;
+}
