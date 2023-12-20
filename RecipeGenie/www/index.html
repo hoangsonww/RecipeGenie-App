@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The RecipeGenie App</title>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+
+    <div class="mobile-container">
+
+        <h1 class="h1" id="h1">The RecipeGenie App</h1>
+
+        <h3 class="h3" id="h3"> Your ultimate recipe generator</h3>
+
+        <header>
+            <input type="text" id="search-term" placeholder="Search For Any Meal..." />
+            <button id="search" style="margin-top: -10px"><i class="fas fa-search"></i></button>
+        </header>
+
+        <button id="back-to-home-btn" class="hidden">Back to Homepage</button>
+
+        <div class="fav-container">
+            <h3 id="h3-1">Your Favorite Meals</h3>
+            <ul class="fav-meals" id="fav-meals"></ul>
+        </div>
+
+        <div class="recipe-of-the-day-container">
+            <h3 class="h3" style="color: black">Recipe of the Day</h3>
+            <div id="recipe-of-the-day"></div>
+        </div>
+
+        <div class="meals" id="meals"></div>
+
+        <div id="timer-container">
+            <h3>Cooking Timer</h3>
+            <input type="number" id="timer-input" placeholder="Enter minutes" min="1" />
+            <button id="timer-start-btn">Start</button>
+            <ul id="active-timers"></ul>
+        </div>
+
+        <button class="return-to-home-btn" id="get-more-btn">Get More Random Recipes</button>
+
+        <button id="scroll-top-btn">Scroll to Top</button>
+
+        <h5>Like this app? Share it on your timeline to support us!</h5>
+
+        <button class="return-to-home-btn" onclick="shareOnFacebook()">Share on Facebook</button>
+
+        <br>
+
+        <button class="return-to-home-btn" onclick="shareOnTwitter()">Share on Twitter</button>
+
+        <button onclick="window.location.href='about.html'" class="return-to-home-btn" style="margin-top: 25px">About RecipeGenie</button>
+
+        <h6>Copyright: 2023 &copy; by Son (David) Nguyen</h6>
+    </div>
+
+    <div class="popup-container hidden" id="meal-popup">
+        <div class="popup">
+            <button id="close-popup" class="close-popup" title="Close">
+                <i class="fas fa-times" style="color: black"></i>
+            </button>
+            <div class="meal-info" id="meal-info"></div>
+        </div>
+    </div>
+
+    <div id="chatbotContainer">
+
+        <div id="chatbotHeader">RecipeGenie Chatbot
+            <button id="minimizeChatbot" title="Minimize/Maximize Chat" style="float:right; background: none; border: none; margin-top: -9px">
+                <i class="fas fa-window-minimize"></i>
+            </button>
+        </div>
+
+        <div id="chatbotBody"></div>
+
+        <input id="chatbotInput" type="text" placeholder="Ask me something..." style="margin-bottom: -10px">
+
+    </div>
+
+    <button id="quick-tip-btn" title="Click to See Some Cooking Tips!">Cooking Tip</button>
+
+    <div id="tip-popover" class="hidden">
+
+        <p id="tip-content">Press the button for a tip!</p>
+        <button id="close-tip">Close</button>
+
+    </div>
+
+    <div id="clock" class="clock">
+        <span id="clock-title">Local Time</span>
+        <span id="clock-time"></span>
+    </div>
+
+    <div class="daily-nutritional-tip">
+        <h3>Daily Nutritional Tip</h3>
+        <p id="nutritional-tip-content"></p>
+        <div class="tip-buttons">
+            <button id="next-nutritional-tip" style="cursor: pointer">Next Tip</button>
+            <button id="toggle-nutritional-tip" style="cursor: pointer">Close</button>
+        </div>
+    </div>
+
+    <div id="conversion-tool" class="conversion-tool">
+
+        <h3>Cooking Conversion Tool</h3>
+
+        <select id="conversion-type">
+            <option value="tablespoons-teaspoons">Tablespoons to Teaspoons</option>
+            <option value="teaspoons-tablespoons">Teaspoons to Tablespoons</option>
+            <option value="cups-milliliters">Cups to Milliliters</option>
+            <option value="milliliters-cups">Milliliters to Cups</option>
+            <option value="fahrenheit-celsius">Fahrenheit to Celsius</option>
+            <option value="celsius-fahrenheit">Celsius to Fahrenheit</option>
+            <option value="pounds-kilograms">Pounds to Kilograms</option>
+            <option value="kilograms-pounds">Kilograms to Pounds</option>
+            <option value="ounces-grams">Ounces to Grams</option>
+            <option value="grams-ounces">Grams to Ounces</option>
+            <option value="liters-quarts">Liters to Quarts</option>
+            <option value="quarts-liters">Quarts to Liters</option>
+            <option value="gallons-liters">Gallons to Liters</option>
+            <option value="liters-gallons">Liters to Gallons</option>
+            <option value="tablespoons-milliliters">Tablespoons to Milliliters</option>
+            <option value="milliliters-tablespoons">Milliliters to Tablespoons</option>
+        </select>
+        <input type="number" id="conversion-input" placeholder="Enter value" />
+        <button id="convert-btn">Convert</button>
+        <div id="conversion-result"></div>
+
+    </div>
+
+    <div id="seasonal-highlight" class="seasonal-highlight" title="Take a Look At What's Currently Fresh in This Time of the Year!">
+
+        <h3>Seasonal Ingredients</h3>
+        <p id="seasonal-text"><strong>What's fresh:</strong> <span id="seasonal-ingredients"></span></p>
+
+    </div>
+
+    <div id="flavor-pair-popover">
+
+        <h3>Flavor Pairing Guide</h3>
+        <input type="text" id="flavor-input" placeholder="Enter an ingredient" title="Please enter the entire name of your ingredient!" style="align-self: center" />
+        <div id="pair-results">Enter an ingredient to see its pair.</div>
+
+    </div>
+
+</body>
+
+</html>
