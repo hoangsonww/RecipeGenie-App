@@ -501,6 +501,36 @@ function getDayOfWeek() {
     return new Date().toLocaleDateString('en-US', { weekday: 'long' });
 }
 
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+// Function to update the dark mode
+function updateDarkMode(isDarkMode) {
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+    }
+    else {
+        document.body.classList.remove('dark-mode');
+    }
+    localStorage.setItem('darkMode', isDarkMode);
+}
+
+// Load the dark mode preference from localStorage
+function loadDarkModePreference() {
+    const darkModePreference = localStorage.getItem('darkMode');
+    if (darkModePreference !== null) {
+        updateDarkMode(darkModePreference === 'true');
+    }
+}
+
+// Event listener for the dark mode toggle button
+darkModeToggle.addEventListener('click', function() {
+    const isDarkModeEnabled = document.body.classList.contains('dark-mode');
+    updateDarkMode(!isDarkModeEnabled);
+});
+
+// Load the dark mode preference on page load
+loadDarkModePreference();
+
 async function fetchRecipeOfTheDay() {
     const today = new Date().toDateString(); // Get current date as a string
     let savedRecipe = localStorage.getItem('recipeOfTheDay');

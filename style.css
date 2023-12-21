@@ -307,6 +307,9 @@ button {
     border-radius: 8px;
     border: none;
     transition: background-color 0.3s ease;
+    cursor: pointer;
+    font: inherit;
+    font-size: 12.9px;
 }
 
 button:hover {
@@ -683,7 +686,6 @@ select {
     background-color: #e07ed0;
 }
 
-/* Nutritional Tip Section Styling */
 .daily-nutritional-tip {
     background-color: #f8f8f8;
     box-shadow: 0 0 10px 2px #3333331a;
@@ -709,7 +711,6 @@ select {
     line-height: 1.4;
 }
 
-/* Close Button for Nutritional Tip */
 #close-nutritional-tip {
     background-color: #ff6b6b;
     color: white;
@@ -727,4 +728,47 @@ select {
 
 .link-button {
     text-align: center;
+}
+
+.dark-mode-toggle {
+    position: fixed;
+    transform: translateY(-1000%);
+    left: 10px;
+    bottom: 20px;
+    background-color: #c67ee0;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    z-index: 1000;
+}
+
+.dark-mode {
+    background: #121212;
+    color: #ffffff;
+}
+
+.dark-mode .mobile-container,
+.dark-mode .popup {
+    background-color: #333333; /* Darker background for containers */
+    color: #ffffff;
+}
+
+.dark-mode .meal {
+    background-color: white;
+    color: black;
+}
+
+.dark-mode .close-popup {
+    color: white;
+}
+
+.close-popup {
+    color: black;
 }

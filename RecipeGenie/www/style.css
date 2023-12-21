@@ -20,6 +20,12 @@ body {
     min-height: 100vh;
 }
 
+.logo {
+    text-align: center;
+    align-self: center;
+    margin-top: 30px;
+}
+
 img {
     max-width: 100%;
 }
@@ -307,6 +313,8 @@ button {
     border-radius: 8px;
     border: none;
     transition: background-color 0.3s ease;
+    font: inherit;
+    font-size: 12.9px;
 }
 
 button:hover {
@@ -435,74 +443,6 @@ footer button:hover {
     background-color: #e07ed0;
 }
 
-#quick-tip-btn {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background-color: #c67ee0;
-    border: none;
-    color: white;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    z-index: 1000; /* Ensure it's above other elements */
-}
-
-#quick-tip-btn:hover {
-    background-color: #e07ed0;
-}
-
-.clock {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #f8f8f8;
-    color: #333;
-    padding: 10px;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
-    text-align: center;
-}
-
-#clock-title {
-    display: block; /* Makes the title appear on its own line */
-    font-size: 0.8em;
-    font-weight: bold;
-}
-
-#clock-time {
-    font-size: 1.2em; /* Larger text for the actual time */
-}
-
-#tip-popover {
-    position: fixed;
-    left: 20px;
-    top: 55px; /* Positioned above the tip button */
-    background-color: white;
-    color: black;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000; /* Ensure it's above other elements */
-    width: 200px; /* Set a fixed width */
-}
-
-#tip-popover.hidden {
-    display: none;
-}
-
-#close-tip {
-    background-color: #ff6b6b;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    float: right; /* Aligns the close button to the right */
-}
-
 .conversion-tool {
     position: fixed;
     bottom: 20px;
@@ -513,29 +453,6 @@ footer button:hover {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 1000;
     max-width: 40vh;
-}
-
-.seasonal-highlight {
-    background-color: #fff7e6; /* Light orange background for a 'fresh' feel */
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
-    width: 200px;
-    position: fixed;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-}
-
-.seasonal-highlight h3 {
-    text-align: center;
-    color: #e07ed0;
-}
-
-.seasonal-highlight p {
-    color: #333;
-    font-size: 0.9em;
 }
 
 #back-to-home-btn {
@@ -549,18 +466,19 @@ footer button:hover {
     margin-top: -20px;
     margin-bottom: 10px;
     display: none;
+    cursor: pointer;
 }
 
 #back-to-home-btn.visible {
-    display: block; /* To make the button visible */
+    display: block;
 }
 
 #back-to-home-btn:hover {
-    background-color: #e07ed0; /* Lighter shade on hover */
+    background-color: #e07ed0;
 }
 
 .hidden {
-    display: none; /* Ensures elements with this class are not displayed */
+    display: none;
 }
 
 #conversion-result {
@@ -586,80 +504,24 @@ footer button:hover {
     margin-bottom: 10px;
 }
 
-#flavor-pair-popover {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-60%);
-    background-color: #f8f8f8;
-    color: black;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
-    width: 220px;
-    align-items: center;
-}
-
-#flavor-pair-popover h3 {
-    text-align: center;
-    color: #e07ed0; /* Pink color for the title */
-    margin-bottom: 10px;
-    margin-top: -2px;
-}
-
-#pair-results {
-    margin-top: 10px;
-    font-size: 0.8rem;
-    text-align: center;
-}
-
-#flavor-input {
-    width: calc(100% - 20px);
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 2px solid #e07ed0;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    color: #333;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    align-self: center;
-    transform: translateX(8%);
-}
-
-/* Default styles for mobile - hide elements */
-#quick-tip-btn,
-#clock,
 #chatbotContainer,
-#conversion-tool,
-#flavor-pair-popover,
-#seasonal-highlight,
-#kitchen-inventory-tracker,
-.daily-nutritional-tip {
+#conversion-tool {
     display: none;
 }
 
-/* Styles for tablets and larger screens - show elements */
 @media (min-width: 1230px) {
-    #quick-tip-btn,
-    #clock,
     #chatbotContainer,
-    #conversion-tool,
-    #flavor-pair-popover,
-    #seasonal-highlight,
-    #kitchen-inventory-tracker,
-    .daily-nutritional-tip {
+    #conversion-tool {
         display: block;
     }
 }
 
 input[type="text"], input[type="number"], input[type="email"], input[type="password"], input[type="tel"], input[type="url"], textarea,
 select {
-    width: 100%; /* Full width */
+    width: 100%;
     padding: 10px;
     margin: 5px 0 20px 0;
-    border: 2px solid #e07ed0; /* Pink border */
+    border: 2px solid #e07ed0;
     border-radius: 8px;
     font-family: 'Poppins', sans-serif;
     color: #333;
@@ -683,48 +545,49 @@ select {
     background-color: #e07ed0;
 }
 
-/* Nutritional Tip Section Styling */
-.daily-nutritional-tip {
-    background-color: #f8f8f8;
-    box-shadow: 0 0 10px 2px #3333331a;
-    border-radius: 8px;
-    padding: 1rem;
-    margin: 1rem 0;
+.link-button {
+    text-align: center;
+}
+
+.dark-mode-toggle {
     position: fixed;
-    right: 20px;
-    top: 100px;
-    width: auto;
+    transform: translateY(-1400%);
+    left: 0;
+    bottom: 20px;
+    background-color: #c67ee0;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
     z-index: 1000;
 }
 
-.daily-nutritional-tip h3 {
-    font-size: 1.1rem;
-    color: #c67ee0;
-    margin-bottom: 0.5rem;
+.dark-mode {
+    background: #121212;
+    color: #ffffff;
 }
 
-#nutritional-tip-content {
-    font-size: 0.9rem;
-    color: #333;
-    line-height: 1.4;
+.dark-mode .mobile-container,
+.dark-mode .popup {
+    background-color: #333333; /* Darker background for containers */
+    color: #ffffff;
 }
 
-/* Close Button for Nutritional Tip */
-#close-nutritional-tip {
-    background-color: #ff6b6b;
+.dark-mode .meal {
+    background-color: white;
+    color: black;
+}
+
+.dark-mode .close-popup {
     color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    float: right;
-    margin-top: 5px;
 }
 
-#close-nutritional-tip:hover {
-    background-color: #ff3b3b;
-}
-
-.link-button {
-    text-align: center;
+.close-popup {
+    color: black;
 }

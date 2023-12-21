@@ -19,90 +19,6 @@ getRandomMeal();
 getRandomMeal();
 fetchFavMeals();
 
-const nutritionalTips = [
-    "Eating a variety of fruits and vegetables provides essential nutrients and fiber.",
-    "Incorporate whole grains instead of refined grains for more nutrients and fiber.",
-    "Stay hydrated by drinking plenty of water, especially in hot weather or when exercising.",
-    "Opt for lean protein sources like poultry, fish, beans, and nuts.",
-    "Limit added sugars and salt in your diet to maintain a healthy heart and weight.",
-    "Healthy fats such as those found in avocados, olive oil, and nuts are beneficial in moderation.",
-    "Regularly including fish in your diet can contribute to heart health due to omega-3 fatty acids.",
-    "Balance is key in diet; all food groups have something to offer nutritionally.",
-    "Snack on nuts, seeds, or fruits rather than processed snacks for healthier alternatives.",
-    "Include probiotic-rich foods like yogurt in your diet for digestive health.",
-    "Try to eat a rainbow of fruits and vegetables to get a variety of vitamins and minerals.",
-    "Reduce caffeine intake and drink herbal teas to stay hydrated and calm.",
-    "Choose lean cuts of meat and skinless poultry to reduce fat intake.",
-    "Experiment with plant-based proteins like tofu and tempeh for variety and health benefits.",
-    "Avoid processed foods and opt for whole foods instead to reduce sodium intake.",
-    "Try to eat a variety of foods to get a range of nutrients.",
-    "Limit alcohol intake to reduce calories and improve health.",
-    "Eat mindfully by paying attention to your food and enjoying each bite.",
-    "Try to eat at least five servings of fruits and vegetables per day.",
-    "Avoid sugary drinks and opt for water, tea, or coffee instead.",
-    "Try to eat at least three servings of whole grains per day.",
-    "Limit red meat intake and opt for leaner sources of protein.",
-    "Try to eat at least two servings of fish per week.",
-    "Cook at home more often to control ingredients and portions.",
-    "Read nutrition labels to make informed choices about what you eat.",
-    "Try to eat at least three servings of dairy per day.",
-    "Try to eat at least two servings of legumes per week.",
-    "Try to eat at least two servings of nuts and seeds per week.",
-    "Try to eat at least two servings of eggs per week.",
-    "Try to eat at least two servings of poultry per week.",
-    "Try to eat at least two servings of tofu per week.",
-    "Try to eat at least two servings of tempeh per week.",
-    "Try to eat at least two servings of whole grains per day.",
-    "Try to eat at least two servings of berries per week.",
-    "Try to eat at least two servings of cruciferous vegetables per week.",
-    "Try to eat at least two servings of leafy greens per week.",
-    "Try to eat at least two servings of citrus fruits per week.",
-    "Try to eat at least two servings of root vegetables per week.",
-    "Try to eat at least two servings of allium vegetables per week.",
-    "Try to eat at least two servings of nightshade vegetables per week.",
-    "Try to eat at least two servings of tropical fruits per week.",
-];
-
-let isTipExpanded = true;
-
-function displayNutritionalTip() {
-    const tipContent = document.getElementById('nutritional-tip-content');
-    if (!tipContent) {
-        console.error('Nutritional tip content element not found');
-        return;
-    }
-    tipContent.textContent = nutritionalTips[currentTipIndex];
-}
-
-function toggleTipView() {
-    const tipContent = document.getElementById('nutritional-tip-content');
-    const toggleButton = document.getElementById('toggle-nutritional-tip');
-
-    if (isTipExpanded) {
-        tipContent.style.display = 'none';
-        toggleButton.textContent = 'Expand';
-    }
-    else {
-        tipContent.style.display = 'block';
-        toggleButton.textContent = 'Close';
-    }
-
-    isTipExpanded = !isTipExpanded;
-}
-
-let currentTipIndex = new Date().getDay();
-
-document.getElementById('next-nutritional-tip').addEventListener('click', function() {
-    currentTipIndex = (currentTipIndex + 1) % nutritionalTips.length;
-    displayNutritionalTip();
-});
-
-document.getElementById('toggle-nutritional-tip').addEventListener('click', toggleTipView);
-
-document.addEventListener('DOMContentLoaded', function() {
-    displayNutritionalTip();
-});
-
 async function getMealById(id) {
     const resp = await fetch(
         "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id
@@ -552,6 +468,36 @@ function displayRecipeOfTheDay(recipe) {
     `;
 }
 
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+// Function to update the dark mode
+function updateDarkMode(isDarkMode) {
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+    }
+    else {
+        document.body.classList.remove('dark-mode');
+    }
+    localStorage.setItem('darkMode', isDarkMode);
+}
+
+// Load the dark mode preference from localStorage
+function loadDarkModePreference() {
+    const darkModePreference = localStorage.getItem('darkMode');
+    if (darkModePreference !== null) {
+        updateDarkMode(darkModePreference === 'true');
+    }
+}
+
+// Event listener for the dark mode toggle button
+darkModeToggle.addEventListener('click', function() {
+    const isDarkModeEnabled = document.body.classList.contains('dark-mode');
+    updateDarkMode(!isDarkModeEnabled);
+});
+
+// Load the dark mode preference on page load
+loadDarkModePreference();
+
 async function fetchAndShowMealInfo(mealId) {
     const mealData = await getMealById(mealId);
     showMealInfo(mealData);
@@ -615,52 +561,6 @@ function playSound(filename) {
     const audio = new Audio(filename);
     audio.play();
 }
-
-const tips = [
-    "To keep potatoes from sprouting, place an apple in the bag with the potatoes.",
-    "To prevent butter from over-browning in your pan, add a little bit of lemon juice.",
-    "Use a microplane to grate garlic, ginger, and hard cheeses.",
-    "For fluffier, whiter rice, add a teaspoon of lemon juice to the boiling water.",
-    "Let roasted meats rest before carving to keep them juicy.",
-    "Use yogurt instead of cream to thicken soups – it's healthier and gives a tangy flavor.",
-    "Marinate meat with acidic ingredients like vinegar or citrus to tenderize.",
-    "To keep your brown sugar soft, store it with a slice of bread.",
-    "Grate cold butter to make it easier to spread.",
-    "To ripen avocados quickly, place them in a paper bag with a banana.",
-    "Use parchment paper when baking for an easy cleanup.",
-    "Freeze herbs in olive oil in ice cube trays for future use.",
-    "To get more juice out of lemons or limes, roll them on the counter before squeezing.",
-    "Keep your spices away from sources of heat like the stove or lights to preserve their flavor.",
-    "To clean a grill, cut an onion in half and rub it over the grates.",
-    "Refresh limp vegetables by soaking them in ice water.",
-    "Soak wooden skewers in water for 30 minutes before grilling to prevent burning.",
-    "To keep your cutting board from slipping, place a damp paper towel underneath.",
-    "To keep brown sugar soft, add a slice of bread to the container.",
-    "To keep cookies soft, store them with a slice of bread.",
-    "To keep bananas from browning, wrap the stems in plastic wrap.",
-];
-
-function updateClock() {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0');
-    document.getElementById('clock-time').textContent = `${hours}:${minutes}:${seconds}`;
-}
-
-// Update the clock immediately and then every second
-updateClock();
-setInterval(updateClock, 1000);
-
-document.getElementById('quick-tip-btn').addEventListener('click', function() {
-    const randomIndex = Math.floor(Math.random() * tips.length);
-    document.getElementById('tip-content').textContent = tips[randomIndex];
-    document.getElementById('tip-popover').classList.remove('hidden');
-});
-
-document.getElementById('close-tip').addEventListener('click', function() {
-    document.getElementById('tip-popover').classList.add('hidden');
-});
 
 document.getElementById('convert-btn').addEventListener('click', function() {
     const conversionType = document.getElementById('conversion-type').value;
@@ -726,118 +626,6 @@ document.getElementById('convert-btn').addEventListener('click', function() {
     document.getElementById('conversion-result').textContent = `Result: ${result.toFixed(2)}`;
 });
 
-function getSeason() {
-    const month = new Date().getMonth();
-    if (month >= 2 && month <= 4) {
-        return 'spring';
-    }
-    else if (month >= 5 && month <= 7) {
-        return 'summer';
-    }
-    else if (month >= 8 && month <= 10) {
-        return 'autumn';
-    }
-    else {
-        return 'winter';
-    }
-}
-
-function updateSeasonalIngredients() {
-    const season = getSeason();
-    const ingredients = {
-        spring: ['asparagus', 'peas', 'mint', 'strawberries', 'rhubarb'],
-        summer: ['tomatoes', 'bell peppers', 'cucumbers', 'peaches', 'watermelon'],
-        autumn: ['pumpkins', 'apples', 'sweet potatoes', 'brussels sprouts', 'cranberries'],
-        winter: ['kale', 'citrus fruits', 'pomegranates', 'squash', 'beets']
-    };
-
-    const seasonalIngredientsElement = document.getElementById('seasonal-ingredients');
-    seasonalIngredientsElement.textContent = ingredients[season].join(', ');
-}
-
-updateSeasonalIngredients();
-
-const flavorPairs = {
-    apple: "cinnamon",
-    salmon: "dill",
-    chocolate: "orange",
-    chicken: "thyme",
-    beef: "rosemary",
-    pork: "apple",
-    carrot: "ginger",
-    tomato: "basil",
-    strawberry: "balsamic",
-    lemon: "lavender",
-    shrimp: "garlic",
-    mushroom: "parsley",
-    spinach: "nutmeg",
-    banana: "walnut",
-    blueberry: "lemon",
-    egg: "black pepper",
-    potato: "rosemary",
-    avocado: "lime",
-    lime: "cilantro",
-    coffee: "vanilla",
-    pear: "blue cheese",
-    honey: "ginger",
-    orange: "chocolate",
-    watermelon: "feta",
-    mint: "chocolate",
-    pineapple: "coconut",
-    peach: "balsamic",
-    pumpkin: "nutmeg",
-    cherry: "almond",
-    asparagus: "lemon",
-    blackberry: "ginger",
-    raspberry: "chocolate",
-    cranberry: "orange",
-    fig: "goat cheese",
-    grape: "blue cheese",
-    mango: "lime",
-    artichoke: "lemon",
-    apricot: "almond",
-    brie: "apple",
-    cabbage: "caraway",
-    cantaloupe: "prosciutto",
-    cauliflower: "cumin",
-    celery: "blue cheese",
-    cheddar: "apple",
-    coconut: "lime",
-    corn: "cilantro",
-    cucumber: "dill",
-    fennel: "orange",
-    garlic: "basil",
-    grapefruit: "mint",
-    hazelnut: "chocolate",
-    jalapeno: "cilantro",
-    kale: "lemon",
-    kiwi: "strawberry",
-    lentil: "cumin",
-    olive: "rosemary",
-    onion: "thyme",
-    parmesan: "balsamic",
-    plum: "cinnamon",
-    pomegranate: "mint",
-    radish: "butter",
-    raisin: "cinnamon",
-    ricotta: "lemon",
-    sage: "butternut squash",
-    tarragon: "chicken",
-    watercress: "orange",
-};
-
-document.getElementById('flavor-input').addEventListener('input', function() {
-    const ingredient = this.value.trim().toLowerCase();
-    const results = document.getElementById('pair-results');
-    if (ingredient && flavorPairs[ingredient]) {
-        results.textContent = `Pairs with: ${flavorPairs[ingredient]}`;
-    } else if (ingredient) {
-        results.textContent = "No pair found. Try a different ingredient.";
-    } else {
-        results.textContent = "Enter an ingredient to see its pair.";
-    }
-});
-
 document.getElementById('get-more-btn').addEventListener('click', async () => {
     // Fetch and add 5 more random meals
     for (let i = 0; i < 5; i++) {
@@ -858,83 +646,8 @@ async function getRandomMeal() {
 }
 
 document.getElementById('scroll-top-btn').addEventListener('click', () => {
-    // Use window.scrollTo with behavior smooth for a smooth scroll
     window.scrollTo({
-        top: 0, // Scroll to the top of the page
-        behavior: 'smooth' // Smooth scroll
+        top: 0,
+        behavior: 'smooth'
     });
 });
-
-const leftoverInput = document.getElementById('leftover-ingredients-input');
-const findRecipesButton = document.getElementById('find-recipes-button');
-const leftoverRecipesContainer = document.getElementById('leftover-recipes');
-
-async function fetchRecipesWithIngredients(ingredients) {
-    try {
-        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredients}`);
-        const data = await response.json();
-        return data.meals; // Returns an array of meals
-    } catch (error) {
-        console.error('Error fetching recipes:', error);
-        return [];
-    }
-}
-
-function displayRecipes(recipes) {
-    leftoverRecipesContainer.innerHTML = ''; // Clear previous results
-    recipes.forEach(recipe => {
-        const recipeElement = document.createElement('div');
-        recipeElement.className = 'meal';
-        recipeElement.innerHTML = `
-            <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" />
-            <h4>${recipe.strMeal}</h4>
-        `;
-        leftoverRecipesContainer.appendChild(recipeElement);
-    });
-}
-
-findRecipesButton.addEventListener('click', async () => {
-    const ingredients = leftoverInput.value.trim().replace(/\s*,\s*/g, ',');
-    if (!ingredients) {
-        alert('Please enter some ingredients.');
-        return;
-    }
-    const recipes = await fetchRecipesWithIngredients(ingredients);
-    if (recipes && recipes.length > 0) {
-        displayRecipes(recipes);
-    }
-    else {
-        leftoverRecipesContainer.innerHTML = '<p>No recipes found. Try different ingredients.</p>';
-    }
-});
-
-// const heading = document.getElementById('h1');
-// const subhead = document.getElementById('h3');
-// const colors = ['#ff0000',
-//     '#00ff00',
-//     '#0000ff',
-//     '#ffff00',
-//     '#00ffff',
-//     '#ff00ff'];
-// let timeoutID;
-//
-// function changeBackgroundColor(event) {
-//     const randomColor = colors[Math.floor(Math.random() * colors.length)];
-//     event.target.style.color = randomColor;
-//     timeoutID = setTimeout(resetBackgroundColor, 500);
-// }
-//
-// function resetBackgroundColor(event) {
-//     event.target.style.color = "hotpink";
-//     clearTimeout(timeoutID);
-// }
-//
-// function resetBackgroundColor2(event) {
-//     event.target.style.color = "lightpink";
-//     clearTimeout(timeoutID);
-// }
-//
-// heading.addEventListener('mouseover', changeBackgroundColor);
-// heading.addEventListener('mouseout', resetBackgroundColor);
-// subhead.addEventListener('mouseover', changeBackgroundColor);
-// subhead.addEventListener('mouseout', resetBackgroundColor2);

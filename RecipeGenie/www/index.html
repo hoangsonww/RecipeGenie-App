@@ -5,10 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The RecipeGenie App</title>
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -31,18 +28,18 @@
 
         <div class="fav-container">
             <h3 id="h3-1">Your Favorite Meals</h3>
-            <ul class="fav-meals" id="fav-meals"></ul>
+            <ul class="fav-meals" id="fav-meals" style="color: black"></ul>
         </div>
 
         <div class="recipe-of-the-day-container">
             <h3 class="h3" style="color: black">Recipe of the Day</h3>
-            <div id="recipe-of-the-day"></div>
+            <div id="recipe-of-the-day" style="color: black"></div>
         </div>
 
         <div class="meals" id="meals"></div>
 
         <div id="timer-container">
-            <h3>Cooking Timer</h3>
+            <h3 style="color: #121212">Cooking Timer</h3>
             <input type="number" id="timer-input" placeholder="Enter minutes" min="1" />
             <button id="timer-start-btn">Start</button>
             <ul id="active-timers"></ul>
@@ -68,7 +65,7 @@
     <div class="popup-container hidden" id="meal-popup">
         <div class="popup">
             <button id="close-popup" class="close-popup" title="Close">
-                <i class="fas fa-times" style="color: black"></i>
+                <i class="fas fa-times"></i>
             </button>
             <div class="meal-info" id="meal-info"></div>
         </div>
@@ -88,28 +85,9 @@
 
     </div>
 
-    <button id="quick-tip-btn" title="Click to See Some Cooking Tips!">Cooking Tip</button>
-
-    <div id="tip-popover" class="hidden">
-
-        <p id="tip-content">Press the button for a tip!</p>
-        <button id="close-tip">Close</button>
-
-    </div>
-
-    <div id="clock" class="clock">
-        <span id="clock-title">Local Time</span>
-        <span id="clock-time"></span>
-    </div>
-
-    <div class="daily-nutritional-tip">
-        <h3>Daily Nutritional Tip</h3>
-        <p id="nutritional-tip-content"></p>
-        <div class="tip-buttons">
-            <button id="next-nutritional-tip" style="cursor: pointer">Next Tip</button>
-            <button id="toggle-nutritional-tip" style="cursor: pointer">Close</button>
-        </div>
-    </div>
+    <button id="dark-mode-toggle" class="dark-mode-toggle" title="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+    </button>
 
     <div id="conversion-tool" class="conversion-tool">
 
@@ -136,21 +114,6 @@
         <input type="number" id="conversion-input" placeholder="Enter value" />
         <button id="convert-btn">Convert</button>
         <div id="conversion-result"></div>
-
-    </div>
-
-    <div id="seasonal-highlight" class="seasonal-highlight" title="Take a Look At What's Currently Fresh in This Time of the Year!">
-
-        <h3>Seasonal Ingredients</h3>
-        <p id="seasonal-text"><strong>What's fresh:</strong> <span id="seasonal-ingredients"></span></p>
-
-    </div>
-
-    <div id="flavor-pair-popover">
-
-        <h3>Flavor Pairing Guide</h3>
-        <input type="text" id="flavor-input" placeholder="Enter an ingredient" title="Please enter the entire name of your ingredient!" style="align-self: center" />
-        <div id="pair-results">Enter an ingredient to see its pair.</div>
 
     </div>
 
