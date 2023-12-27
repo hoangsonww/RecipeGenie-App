@@ -1,0 +1,7 @@
+# Get Random Meal
+GET https://www.themealdb.com/api/json/v1/1/random.php
+
+###
+
+# Search for a Meal
+GET https://www.themealdb.com/api/json/v1/1/search.php?s=<search_query>

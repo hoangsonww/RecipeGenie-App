@@ -9,16 +9,20 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="src/css/style.css" />
+    <script src="src/js/script.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="utils/favicon.ico">
 </head>
 
 <body>
 
     <div class="mobile-container">
 
-        <h1 class="h1" id="h1">The RecipeGenie App</h1>
+        <a href="index.html" style="text-decoration: none; color: inherit; cursor: pointer">
+            <h1 class="h1" id="h1">
+                The <span id="highlight">RecipeGenie</span> App
+            </h1>
+        </a>
 
         <h3 class="h3" id="h3"> Your ultimate recipe generator</h3>
 
@@ -41,6 +45,8 @@
 
         <div class="meals" id="meals"></div>
 
+        <div id="loadingIndicator" style="color: black" class="hidden">Fetching Meals...</div>
+
         <div id="timer-container">
             <h3 style="color: black">Cooking Timer</h3>
             <input type="number" id="timer-input" placeholder="Enter minutes" min="1" />
@@ -52,15 +58,9 @@
 
         <button id="scroll-top-btn">Scroll to Top</button>
 
-        <h5>Like this app? Share it on your timeline to support us!</h5>
+        <h5>Like this app? Take a look at its about page!</h5>
 
-        <button class="return-to-home-btn" onclick="shareOnFacebook()">Share on Facebook</button>
-
-        <br>
-
-        <button class="return-to-home-btn" onclick="shareOnTwitter()">Share on Twitter</button>
-
-        <button onclick="window.location.href='about.html'" class="return-to-home-btn" style="margin-top: 25px">About RecipeGenie</button>
+        <button onclick="window.location.href='./src/html/about.html'" class="return-to-home-btn" style="margin-top: 25px">About RecipeGenie</button>
 
         <h6>Copyright: 2023 &copy; by Son (David) Nguyen</h6>
     </div>
@@ -74,35 +74,29 @@
         </div>
     </div>
 
-    <div id="chatbotContainer">
-
+    <div id="chatbotContainer" class="side-element">
         <div id="chatbotHeader">RecipeGenie Chatbot
             <button id="minimizeChatbot" title="Minimize/Maximize Chat" style="float:right; background: none; border: none; margin-top: -9px">
                 <i class="fas fa-window-minimize"></i>
             </button>
         </div>
-
         <div id="chatbotBody"></div>
-
         <input id="chatbotInput" type="text" placeholder="Ask me something..." style="margin-bottom: -10px">
-
     </div>
 
-    <button id="quick-tip-btn" title="Click to See Some Cooking Tips!">Cooking Tip</button>
+    <button id="quick-tip-btn" class="side-element" title="Click to See Some Cooking Tips!">Cooking Tip</button>
 
     <div id="tip-popover" class="hidden">
-
         <p id="tip-content">Press the button for a tip!</p>
         <button id="close-tip">Close</button>
-
     </div>
 
-    <div id="clock" class="clock">
+    <div id="clock" class="clock side-element">
         <span id="clock-title">Local Time</span>
         <span id="clock-time"></span>
     </div>
 
-    <div class="daily-nutritional-tip">
+    <div class="daily-nutritional-tip side-element">
         <h3>Daily Nutritional Tip</h3>
         <p id="nutritional-tip-content"></p>
         <div class="tip-buttons">
@@ -111,7 +105,7 @@
         </div>
     </div>
 
-    <div id="conversion-tool" class="conversion-tool">
+    <div id="conversion-tool" class="conversion-tool side-element">
 
         <h3>Cooking Conversion Tool</h3>
 
@@ -139,25 +133,19 @@
 
     </div>
 
-    <div id="seasonal-highlight" class="seasonal-highlight" title="Take a Look At What's Currently Fresh in This Time of the Year!">
-
+    <div id="seasonal-highlight" class="seasonal-highlight side-element" title="Take a Look At What's Currently Fresh in This Time of the Year!">
         <h3>Seasonal Ingredients</h3>
         <p id="seasonal-text"><strong>What's fresh:</strong> <span id="seasonal-ingredients"></span></p>
-
     </div>
 
     <button id="dark-mode-toggle" class="dark-mode-toggle" title="Toggle Dark Mode">
-
         <i class="fas fa-moon"></i>
-
     </button>
 
-    <div id="flavor-pair-popover">
-
+    <div id="flavor-pair-popover" class="side-element">
         <h3>Flavor Pairing Guide</h3>
         <input type="text" id="flavor-input" placeholder="Enter an ingredient" title="Please enter the entire name of your ingredient!" style="align-self: center" />
-        <div id="pair-results">Enter an ingredient to see its pair.</div>
-
+        <div id="pair-results">Enter the complete name of an ingredient to see its pair.</div>
     </div>
 
 </body>
