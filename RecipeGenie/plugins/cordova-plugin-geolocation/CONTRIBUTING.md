@@ -1,3 +1,4 @@
+<!--
 #
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -15,10 +16,22 @@
 #  KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+#
+-->
 
-.DS_Store
+# Contributing to Apache Cordova
 
-plugins
+Anyone can contribute to Cordova. And we need your contributions.
 
-platforms
-/platforms/
+There are multiple ways to contribute: report bugs, improve the docs, and
+contribute code.
+  
+For instructions on this, start with the
+[contribution overview](http://cordova.apache.org/contribute/).
+
+The details are explained there, but the important items are:
+ - Check for Github issues that corresponds to your contribution and link or create them if necessary.
+ - Run the tests so your patch doesn't break existing functionality.
+
+We look forward to your contributions!
+

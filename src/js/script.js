@@ -89,6 +89,13 @@ document.addEventListener('DOMContentLoaded', function() {
     displayNutritionalTip();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const darkModePreference = localStorage.getItem('darkMode');
+    if (darkModePreference !== null) {
+        toggleDarkMode(darkModePreference === 'true');
+    }
+});
+
 async function getMealById(id) {
     showLoadingIndicator();
     const resp = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
@@ -328,10 +335,70 @@ popupCloseBtn.addEventListener("click", () => {
     mealPopup.classList.add("hidden");
 });
 
+function searchAndDisplayMeals(searchTerm) {
+    getMealsBySearch(searchTerm).then(meals => {
+        if (meals) {
+            mealsEl.innerHTML = "";
+            meals.forEach(meal => {
+                addMeal(meal);
+            });
+
+            addReloadButton();
+        }
+        else {
+            chatbotBody.innerHTML += `
+                <div style="text-align: left; margin-bottom: 10px; color: #000000;">No recipes found for '${searchTerm}'. Please try a different search.</div>
+            `;
+        }
+    }).catch(error => {
+        console.error('Error fetching meals:', error);
+        chatbotBody.innerHTML += `
+            <div style="text-align: left; margin-bottom: 10px; color: #000000;">An error occurred while searching for recipes. Please try again later.</div>
+        `;
+    });
+}
+
+function addReloadButton() {
+    const reloadButton = document.createElement("button");
+    reloadButton.id = "reload-page-btn";
+    reloadButton.innerHTML = '<i class="fas fa-sync-alt"></i> Reload Page';
+    reloadButton.onclick = () => window.location.reload();
+    reloadButton.style.marginBottom = "20px";
+
+    const searchHeader = document.getElementById("app-header");
+    searchHeader.appendChild(reloadButton);
+}
+
+function toggleDarkMode(enable) {
+    if (enable) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+    localStorage.setItem('darkMode', enable);
+}
+
 function elizaResponse(message) {
     const lowerMessage = message.toLowerCase();
+
+    if (lowerMessage.startsWith("recipe for ")) {
+        const searchTerm = lowerMessage.replace("recipe for ", "");
+        searchAndDisplayMeals(searchTerm);
+        return `Searching for recipes for ${searchTerm}...`;
+    }
+
+    if (lowerMessage.includes("enable dark mode") || lowerMessage.includes("dark mode on")) {
+        toggleDarkMode(true);
+        return "Dark mode has been enabled.";
+    } else if (lowerMessage.includes("disable dark mode") || lowerMessage.includes("dark mode off")) {
+        toggleDarkMode(false);
+        return "Dark mode has been disabled.";
+    } else if (lowerMessage.includes("dark mode")) {
+        return "You can enable or disable dark mode by saying 'enable dark mode' or 'disable dark mode'.";
+    }
+
     if (lowerMessage.includes("hello") || lowerMessage.includes("hi") || lowerMessage.includes("hey")) {
-        return "Hello! Ready to cook something delicious with RecipeGenie?";
+        return "Hello! Ready to cook something delicious with RecipeGenie? I can search for recipes for you, help you enable dark mode, and more!";
     } else if (lowerMessage.includes("how are you")) {
         return "I'm excited to explore tasty recipes with you! What are you in the mood for?";
     } else if (lowerMessage.includes("recipegenie")) {
@@ -503,7 +570,7 @@ function loadDarkModePreference() {
 
 darkModeToggle.addEventListener('click', function() {
     const isDarkModeEnabled = document.body.classList.contains('dark-mode');
-    updateDarkMode(!isDarkModeEnabled);
+    toggleDarkMode(!isDarkModeEnabled);
 });
 
 loadDarkModePreference();

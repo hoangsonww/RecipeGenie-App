@@ -17,21 +17,24 @@
 <body>
 
     <div class="mobile-container">
+        <div id="general-header" style="text-align: center;">
+            <div id="app-header">
+                <a href="index.html" style="text-decoration: none; color: inherit; cursor: pointer">
+                    <h1 class="h1" id="h1">
+                        The <span id="highlight">RecipeGenie</span> App
+                    </h1>
+                </a>
 
-        <a href="index.html" style="text-decoration: none; color: inherit; cursor: pointer">
-            <h1 class="h1" id="h1">
-                The <span id="highlight">RecipeGenie</span> App
-            </h1>
-        </a>
+                <h3 class="h3" id="h3"> Your ultimate recipe generator</h3>
 
-        <h3 class="h3" id="h3"> Your ultimate recipe generator</h3>
+                <header id="search-header">
+                    <input type="text" id="search-term" placeholder="Search For Any Meal..." />
+                    <button id="search" style="margin-top: -10px"><i class="fas fa-search"></i></button>
+                </header>
 
-        <header>
-            <input type="text" id="search-term" placeholder="Search For Any Meal..." />
-            <button id="search" style="margin-top: -10px"><i class="fas fa-search"></i></button>
-        </header>
-
-        <button id="back-to-home-btn" class="hidden">Back to Homepage</button>
+                <button id="back-to-home-btn" class="hidden">Back to Homepage</button>
+            </div>
+        </div>
 
         <div class="fav-container">
             <h3 id="h3-1">Your Favorite Meals</h3>
@@ -145,7 +148,7 @@
     <div id="flavor-pair-popover" class="side-element">
         <h3>Flavor Pairing Guide</h3>
         <input type="text" id="flavor-input" placeholder="Enter an ingredient" title="Please enter the entire name of your ingredient!" style="align-self: center" />
-        <div id="pair-results">Enter the complete name of an ingredient to see its pair.</div>
+        <div id="pair-results">Enter the <strong>complete</strong> name of an ingredient to see its pair.</div>
     </div>
 
 </body>
