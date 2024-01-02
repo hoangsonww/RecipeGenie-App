@@ -372,7 +372,8 @@ function addReloadButton() {
 function toggleDarkMode(enable) {
     if (enable) {
         document.body.classList.add('dark-mode');
-    } else {
+    }
+    else {
         document.body.classList.remove('dark-mode');
     }
     localStorage.setItem('darkMode', enable);

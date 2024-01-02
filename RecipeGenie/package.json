@@ -16,7 +16,10 @@
     "cordova-plugin-geolocation": "^5.0.0"
   },
   "cordova": {
-    "platforms": [],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "plugins": {
       "cordova-plugin-geolocation": {
         "GPS_REQUIRED": "true"
