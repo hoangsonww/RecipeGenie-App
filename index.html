@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The RecipeGenie App</title>
+    <link rel="manifest" href="manifest.json">
     <meta name="description" content="Discover new recipes and culinary inspirations with RecipeGenie App. Your ultimate guide for diverse, delicious meals and cooking tips." />
     <meta name="keywords" content="recipes, cooking, culinary, food, nutrition, cooking conversions, meal planning" />
     <meta name="author" content="Son Nguyen Hoang" />
@@ -29,7 +30,6 @@
     <link rel="stylesheet" href="src/css/style.css" />
     <script src="src/js/script.js" defer></script>
     <link rel="icon" type="image/x-icon" href="utils/favicon.ico">
-    <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -115,15 +115,6 @@
     <div id="clock" class="clock side-element">
         <span id="clock-title">Local Time</span>
         <span id="clock-time"></span>
-    </div>
-
-    <div class="daily-nutritional-tip side-element">
-        <h3>Daily Nutritional Tip</h3>
-        <p id="nutritional-tip-content"></p>
-        <div class="tip-buttons">
-            <button id="next-nutritional-tip" style="cursor: pointer">Next Tip</button>
-            <button id="toggle-nutritional-tip" style="cursor: pointer">Close</button>
-        </div>
     </div>
 
     <div id="conversion-tool" class="conversion-tool side-element">

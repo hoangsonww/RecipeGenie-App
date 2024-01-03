@@ -3,91 +3,8 @@ const favoriteContainer = document.getElementById("fav-meals");
 const mealPopup = document.getElementById("meal-popup");
 const mealInfoEl = document.getElementById("meal-info");
 const popupCloseBtn = document.getElementById("close-popup");
-
 const searchTerm = document.getElementById("search-term");
 const searchBtn = document.getElementById("search");
-
-const nutritionalTips = [
-    "Eating a variety of fruits and vegetables provides essential nutrients and fiber.",
-    "Incorporate whole grains instead of refined grains for more nutrients and fiber.",
-    "Stay hydrated by drinking plenty of water, especially in hot weather or when exercising.",
-    "Opt for lean protein sources like poultry, fish, beans, and nuts.",
-    "Limit added sugars and salt in your diet to maintain a healthy heart and weight.",
-    "Healthy fats such as those found in avocados, olive oil, and nuts are beneficial in moderation.",
-    "Regularly including fish in your diet can contribute to heart health due to omega-3 fatty acids.",
-    "Balance is key in diet; all food groups have something to offer nutritionally.",
-    "Snack on nuts, seeds, or fruits rather than processed snacks for healthier alternatives.",
-    "Include probiotic-rich foods like yogurt in your diet for digestive health.",
-    "Try to eat a rainbow of fruits and vegetables to get a variety of vitamins and minerals.",
-    "Reduce caffeine intake and drink herbal teas to stay hydrated and calm.",
-    "Choose lean cuts of meat and skinless poultry to reduce fat intake.",
-    "Experiment with plant-based proteins like tofu and tempeh for variety and health benefits.",
-    "Avoid processed foods and opt for whole foods instead to reduce sodium intake.",
-    "Try to eat a variety of foods to get a range of nutrients.",
-    "Limit alcohol intake to reduce calories and improve health.",
-    "Eat mindfully by paying attention to your food and enjoying each bite.",
-    "Try to eat at least five servings of fruits and vegetables per day.",
-    "Avoid sugary drinks and opt for water, tea, or coffee instead.",
-    "Try to eat at least three servings of whole grains per day.",
-    "Limit red meat intake and opt for leaner sources of protein.",
-    "Try to eat at least two servings of fish per week.",
-    "Cook at home more often to control ingredients and portions.",
-    "Read nutrition labels to make informed choices about what you eat.",
-    "Try to eat at least three servings of dairy per day.",
-    "Try to eat at least two servings of legumes per week.",
-    "Try to eat at least two servings of nuts and seeds per week.",
-    "Try to eat at least two servings of eggs per week.",
-    "Try to eat at least two servings of poultry per week.",
-    "Try to eat at least two servings of tofu per week.",
-    "Try to eat at least two servings of tempeh per week.",
-    "Try to eat at least two servings of whole grains per day.",
-    "Try to eat at least two servings of berries per week.",
-    "Try to eat at least two servings of cruciferous vegetables per week.",
-    "Try to eat at least two servings of leafy greens per week.",
-    "Try to eat at least two servings of citrus fruits per week.",
-    "Try to eat at least two servings of root vegetables per week.",
-    "Try to eat at least two servings of allium vegetables per week.",
-    "Try to eat at least two servings of nightshade vegetables per week.",
-    "Try to eat at least two servings of tropical fruits per week.",
-];
-
-let isTipExpanded = true;
-
-function displayNutritionalTip() {
-    const tipContent = document.getElementById('nutritional-tip-content');
-    if (!tipContent) {
-        console.error('Nutritional tip content element not found');
-        return;
-    }
-    tipContent.textContent = nutritionalTips[currentTipIndex];
-}
-
-function toggleTipView() {
-    const tipContent = document.getElementById('nutritional-tip-content');
-    const toggleButton = document.getElementById('toggle-nutritional-tip');
-    if (isTipExpanded) {
-        tipContent.style.display = 'none';
-        toggleButton.textContent = 'Expand';
-    }
-    else {
-        tipContent.style.display = 'block';
-        toggleButton.textContent = 'Close';
-    }
-    isTipExpanded = !isTipExpanded;
-}
-
-let currentTipIndex = new Date().getDay();
-
-document.getElementById('next-nutritional-tip').addEventListener('click', function() {
-    currentTipIndex = (currentTipIndex + 1) % nutritionalTips.length;
-    displayNutritionalTip();
-});
-
-document.getElementById('toggle-nutritional-tip').addEventListener('click', toggleTipView);
-
-document.addEventListener('DOMContentLoaded', function() {
-    displayNutritionalTip();
-});
 
 document.addEventListener('DOMContentLoaded', function() {
     const darkModePreference = localStorage.getItem('darkMode');
@@ -219,11 +136,6 @@ function hideLoadingIndicator() {
     document.getElementById('loadingIndicator').style.display = 'none';
 }
 
-function toggleSideElements(show) {
-    const elements = document.querySelectorAll('.side-element');
-    elements.forEach(el => el.style.display = show ? 'block' : 'none');
-}
-
 function showMealInfo(mealData) {
     mealInfoEl.innerHTML = "";
     const mealElement = document.createElement("div");
@@ -316,6 +228,13 @@ function searchByTag(tag) {
     toggleSideElements(true);
 }
 
+window.addEventListener('resize', () => {
+    const isPopupHidden = mealPopup.classList.contains('hidden');
+    toggleSideElements(isPopupHidden);
+});
+
+toggleSideElements(true);
+
 function resetToHomepage() {
     document.getElementById('search-term').value = '';
     mealsEl.innerHTML = '';
@@ -356,6 +275,20 @@ function searchAndDisplayMeals(searchTerm) {
             <div style="text-align: left; margin-bottom: 10px; color: #000000;">An error occurred while searching for recipes. Please try again later.</div>
         `;
     });
+}
+
+function toggleSideElements(show) {
+    if (!mealPopup.classList.contains('hidden')) {
+        return;
+    }
+
+    const elements = document.querySelectorAll('.side-element');
+    if (window.innerWidth >= 1230) {
+        elements.forEach(el => el.style.display = 'block');
+    }
+    else {
+        elements.forEach(el => el.style.display = 'none');
+    }
 }
 
 function addReloadButton() {
