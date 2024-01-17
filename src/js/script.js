@@ -11,7 +11,22 @@ document.addEventListener('DOMContentLoaded', function() {
     if (darkModePreference !== null) {
         toggleDarkMode(darkModePreference === 'true');
     }
+    sendWelcomeMessage();
 });
+
+function sendWelcomeMessage() {
+    const welcomeMessage = `Welcome to RecipeGenie! 🌟 Here's how to get started:
+    - To search for a recipe, type 'recipe for [your ingredient or dish]' and hit Enter.
+    - Say 'enable dark mode' or 'disable dark mode' to toggle the dark mode.
+    - Looking for something specific? Just type your query and I'll help you find it.
+    - You can also ask for cooking tips, nutritional advice, and more.
+    
+    If you need help at any point, just ask! Let's make cooking fun and easy. 🍳🥗`;
+
+    chatbotBody.innerHTML += `
+        <div style="text-align: left; margin-bottom: 10px; color: #000000;">${welcomeMessage}</div>
+    `;
+}
 
 async function getMealById(id) {
     showLoadingIndicator();
@@ -451,13 +466,14 @@ minimizeBtn.addEventListener("click", function() {
         chatbotInput.style.display = "block";
         minimizeBtn.innerHTML = '<i class="fas fa-window-minimize"></i>';
         minimizeBtn.setAttribute('title', 'Minimize chatbot');
+        minimizeBtn.style.marginTop = '-12px';
     }
     else {
         chatbotBody.style.display = "none";
         chatbotInput.style.display = "none";
         minimizeBtn.innerHTML = '<i class="fas fa-window-restore"></i>';
         minimizeBtn.setAttribute('title', 'Maximize chatbot');
-        minimizeBtn.style.marginTop = "-5px";
+        minimizeBtn.style.marginTop = "-6px";
     }
     isMinimized = !isMinimized;
 });

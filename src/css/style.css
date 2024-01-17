@@ -734,9 +734,8 @@ select {
 
 .dark-mode-toggle {
     position: fixed;
-    transform: translateY(-1000%);
     left: 10px;
-    bottom: 20px;
+    bottom: 60%;
     background-color: #c67ee0;
     color: white;
     border: none;
