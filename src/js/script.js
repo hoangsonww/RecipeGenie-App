@@ -458,7 +458,13 @@ function sendMessage(message) {
 }
 
 const minimizeBtn = document.getElementById("minimizeChatbot");
-let isMinimized = false;
+let isMinimized = true;
+
+chatbotBody.style.display = "none";
+chatbotInput.style.display = "none";
+minimizeBtn.innerHTML = '<i class="fas fa-window-maximize"></i>';
+minimizeBtn.setAttribute('title', 'Maximize chatbot');
+document.getElementById('chatbotHeader').style.borderRadius = '8px';
 
 minimizeBtn.addEventListener("click", function() {
     if (isMinimized) {
@@ -466,18 +472,17 @@ minimizeBtn.addEventListener("click", function() {
         chatbotInput.style.display = "block";
         minimizeBtn.innerHTML = '<i class="fas fa-window-minimize"></i>';
         minimizeBtn.setAttribute('title', 'Minimize chatbot');
-        minimizeBtn.style.marginTop = '-12px';
+        document.getElementById('chatbotHeader').style.borderRadius = '8px';
     }
     else {
         chatbotBody.style.display = "none";
         chatbotInput.style.display = "none";
-        minimizeBtn.innerHTML = '<i class="fas fa-window-restore"></i>';
+        minimizeBtn.innerHTML = '<i class="fas fa-window-maximize"></i>';
         minimizeBtn.setAttribute('title', 'Maximize chatbot');
-        minimizeBtn.style.marginTop = "-6px";
+        document.getElementById('chatbotHeader').style.borderRadius = '8px';
     }
     isMinimized = !isMinimized;
 });
-
 const seasonalRecipes = {
     spring: ['salad', 'asparagus', 'lemon chicken'],
     summer: ['grilled', 'avocado', 'berries'],
