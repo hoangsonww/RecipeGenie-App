@@ -50,7 +50,7 @@ For support, feedback, or suggestions, please email us at hoangson091104@gmail.c
 RecipeGenie was created by a team of passionate developers and chefs. Special thanks to everyone who contributed their time and expertise to this project.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](../LICENSE) file for details.
 
 ---
 © 2023 RecipeGenie by Son (David) Nguyen. All Rights Reserved.

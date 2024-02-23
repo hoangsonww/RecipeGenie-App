@@ -595,10 +595,10 @@ footer button:hover {
 
 #flavor-pair-popover {
     position: fixed;
-    right: 20px;
-    top: 50%;
+    left: 20px;
+    top: 140px;
     transform: translateY(-60%);
-    background-color: #f8f8f8;
+    background-color: #ffffff;
     color: black;
     padding: 15px;
     border-radius: 8px;
