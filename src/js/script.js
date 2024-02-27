@@ -6,6 +6,9 @@ const popupCloseBtn = document.getElementById("close-popup");
 const searchTerm = document.getElementById("search-term");
 const searchBtn = document.getElementById("search");
 
+let randomMealsFetched = 0;
+const totalRandomMeals = 10;
+
 document.addEventListener('DOMContentLoaded', function() {
     const darkModePreference = localStorage.getItem('darkMode');
     if (darkModePreference !== null) {
@@ -679,15 +682,15 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 
-document.getElementById('quick-tip-btn').addEventListener('click', function() {
-    const randomIndex = Math.floor(Math.random() * tips.length);
-    document.getElementById('tip-content').textContent = tips[randomIndex];
-    document.getElementById('tip-popover').classList.remove('hidden');
-});
+// document.getElementById('quick-tip-btn').addEventListener('click', function() {
+//     const randomIndex = Math.floor(Math.random() * tips.length);
+//     document.getElementById('tip-content').textContent = tips[randomIndex];
+//     document.getElementById('tip-popover').classList.remove('hidden');
+// });
 
-document.getElementById('close-tip').addEventListener('click', function() {
-    document.getElementById('tip-popover').classList.add('hidden');
-});
+// document.getElementById('close-tip').addEventListener('click', function() {
+//     document.getElementById('tip-popover').classList.add('hidden');
+// });
 
 document.getElementById('convert-btn').addEventListener('click', function() {
     const conversionType = document.getElementById('conversion-type').value;
@@ -766,19 +769,19 @@ function getSeason() {
     }
 }
 
-function updateSeasonalIngredients() {
-    const season = getSeason();
-    const ingredients = {
-        spring: ['asparagus', 'peas', 'mint', 'strawberries', 'rhubarb'],
-        summer: ['tomatoes', 'bell peppers', 'cucumbers', 'peaches', 'watermelon'],
-        autumn: ['pumpkins', 'apples', 'sweet potatoes', 'brussels sprouts', 'cranberries'],
-        winter: ['kale', 'citrus fruits', 'pomegranates', 'squash', 'beets']
-    };
-    const seasonalIngredientsElement = document.getElementById('seasonal-ingredients');
-    seasonalIngredientsElement.textContent = ingredients[season].join(', ');
-}
-
-updateSeasonalIngredients();
+// function updateSeasonalIngredients() {
+//     const season = getSeason();
+//     const ingredients = {
+//         spring: ['asparagus', 'peas', 'mint', 'strawberries', 'rhubarb'],
+//         summer: ['tomatoes', 'bell peppers', 'cucumbers', 'peaches', 'watermelon'],
+//         autumn: ['pumpkins', 'apples', 'sweet potatoes', 'brussels sprouts', 'cranberries'],
+//         winter: ['kale', 'citrus fruits', 'pomegranates', 'squash', 'beets']
+//     };
+//     const seasonalIngredientsElement = document.getElementById('seasonal-ingredients');
+//     seasonalIngredientsElement.textContent = ingredients[season].join(', ');
+// }
+//
+// updateSeasonalIngredients();
 
 const flavorPairs = {
     apple: "cinnamon",
@@ -862,9 +865,6 @@ document.getElementById('flavor-input').addEventListener('input', function() {
         results.textContent = "Enter an ingredient to see its pair.";
     }
 });
-
-let randomMealsFetched = 0;
-const totalRandomMeals = 10;
 
 async function getRandomMeal() {
     try {
