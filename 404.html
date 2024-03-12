@@ -8,7 +8,6 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap">
     <style>
-        /* Global styles */
         * {
             box-sizing: border-box;
         }
@@ -69,7 +68,6 @@
             color: #333;
         }
 
-        /* Dark mode styles */
         .dark-mode {
             background: #121212;
             color: #ffffff;
@@ -93,7 +91,6 @@
         }
     </style>
 </head>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZV7LT4762L"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
@@ -103,32 +100,32 @@
     gtag('config', 'G-ZV7LT4762L');
 </script>
 <body>
-<div class="mobile-container">
-    <header>
-        <h1>404 - Page Not Found</h1>
-    </header>
+    <div class="mobile-container">
+        <header>
+            <h1>404 - Page Not Found</h1>
+        </header>
 
-    <div class="content">
-        <p>Oops! The page you're looking for doesn't exist.</p>
-        <p>You may have mistyped the address or the page may have moved.</p>
-        <button onclick="window.history.back()">Go Back</button>
-        <button onclick="window.location.href='index.html'">Return to Homepage</button>
+        <div class="content">
+            <p>Oops! The page you're looking for doesn't exist.</p>
+            <p>You may have mistyped the address or the page may have moved.</p>
+            <button onclick="window.location.href='https://hoangsonww.github.io/RecipeGenie-App/'">Return to Homepage</button>
+        </div>
+
+        <footer>
+            <h6>Copyright: 2023 &copy; by Son (David) Nguyen</h6>
+        </footer>
     </div>
 
-    <footer>
-        <h6>Copyright: 2023 &copy; by Son (David) Nguyen</h6>
-    </footer>
-</div>
-
-<script>
-    function loadDarkMode() {
-        const darkMode = localStorage.getItem('darkMode') === 'true';
-        if (darkMode) {
-            document.body.classList.add('dark-mode');
+    <script>
+        function loadDarkMode() {
+            const darkMode = localStorage.getItem('darkMode') === 'true';
+            if (darkMode) {
+                document.body.classList.add('dark-mode');
+            }
         }
-    }
 
-    loadDarkMode();
-</script>
+        loadDarkMode();
+    </script>
 </body>
+
 </html>
