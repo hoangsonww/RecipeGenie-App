@@ -470,12 +470,14 @@ minimizeBtn.setAttribute('title', 'Maximize chatbot');
 document.getElementById('chatbotHeader').style.borderRadius = '8px';
 
 minimizeBtn.addEventListener("click", function() {
+    minimizeBtn.style.paddingTop = '14px';
     if (isMinimized) {
         chatbotBody.style.display = "block";
         chatbotInput.style.display = "block";
         minimizeBtn.innerHTML = '<i class="fas fa-window-minimize"></i>';
         minimizeBtn.setAttribute('title', 'Minimize chatbot');
         document.getElementById('chatbotHeader').style.borderRadius = '8px';
+        minimizeBtn.style.paddingTop = '14px !important';
     }
     else {
         chatbotBody.style.display = "none";

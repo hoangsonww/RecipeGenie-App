@@ -323,6 +323,7 @@ button:hover {
 #minimizeChatbot {
     color: white;
     cursor: pointer;
+    padding-top: 14px;
 }
 
 #minimizeChatbot:hover {
