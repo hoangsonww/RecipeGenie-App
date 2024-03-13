@@ -24,7 +24,7 @@ To get started with RecipeGenie:
    ```
    cd RecipeGenie
    ```
-3. Open the `index.html` file in your preferred web browser.
+3. Simply open the `index.html` file in your preferred web browser.
 
 ## Usage
 - **Finding Recipes**: Use the search bar to find recipes based on specific ingredients or names.
