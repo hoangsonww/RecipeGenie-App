@@ -154,6 +154,48 @@ function hideLoadingIndicator() {
     document.getElementById('loadingIndicator').style.display = 'none';
 }
 
+document.getElementById('search-term').addEventListener('input', async function() {
+    const searchTerm = this.value.trim();
+    const searchResultsContainer = document.getElementById('search-results-container');
+
+    if (searchTerm.length === 0) {
+        searchResultsContainer.innerHTML = '';
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(searchTerm)}`);
+        const data = await response.json();
+
+        searchResultsContainer.innerHTML = '';
+
+        if (data.meals) {
+            data.meals.slice(0, 5).forEach(meal => {
+                const mealCard = document.createElement('div');
+                mealCard.classList.add('meal-card');
+                mealCard.innerHTML = `
+                    <img src="${meal.strMealThumb}" alt="Image of ${meal.strMeal}">
+                    <div class="meal-name">${meal.strMeal}</div>
+                `;
+
+                mealCard.addEventListener('click', async () => {
+                    const mealData = await getMealById(meal.idMeal);
+                    showMealInfo(mealData);
+                });
+
+                searchResultsContainer.appendChild(mealCard);
+            });
+        }
+        else {
+            searchResultsContainer.innerHTML = '<div style="margin-bottom: 20px">No matches found.</div>';
+        }
+    }
+    catch (error) {
+        console.error('Error fetching meals:', error);
+        searchResultsContainer.innerHTML = '<div>Unable to fetch meals. Please try again.</div>';
+    }
+});
+
 function showMealInfo(mealData) {
     mealInfoEl.innerHTML = "";
     const mealElement = document.createElement("div");
