@@ -8,8 +8,8 @@ RecipeGenie is a feature-rich, user-friendly web application designed to simplif
 ## User Interface
 
 <p align="center" style="cursor: pointer">
-  <a href="https://hoangsonww.github.io/WeatherMate-App/">
-    <img src="../utils/weathermateUI.png" alt="The WeatherMate App Interface"/>
+  <a href="https://hoangsonww.github.io/RecipeGenie-App/">
+    <img src="../utils/recipegenie.png" alt="The RecipeGenie App Interface"/>
   </a>
 </p>
 
