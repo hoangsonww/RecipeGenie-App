@@ -64,7 +64,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
     </platform>
 
-    <!-- ios -->
+    <!-- swift -->
     <platform name="ios">
 
         <js-module src="www/Coordinates.js" name="Coordinates">

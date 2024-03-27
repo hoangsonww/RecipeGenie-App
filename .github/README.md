@@ -36,9 +36,45 @@ To get started with RecipeGenie:
 - HTML
 - CSS
 - JavaScript
-- External APIs (e.g., TheMealDB for recipes)
 - Node.js
 - React
+- ReactNative (for mobile app)
+- Swift (for iOS app)
+- Kotlin (for Android app)
+- Java (for Android app)
+- Python (for backend)
+- Apache Cordova
+- MongoDB
+- Firebase
+- Netlify
+
+## Mobile Apps
+
+RecipeGenie is also available as a mobile application for both iOS and Android. The mobile app offers a seamless user experience and additional features such as meal planning, cooking conversions, and an interactive chatbot. The app is developed using Swift, Kotlin, Java, and React Native to ensure a consistent and engaging experience across platforms.
+
+To get started with the mobile app:
+
+1. Clone the repository.
+2. Go to the `RecipeGenie` subdirectory.
+3. For the iOS app, simply open the file `RecipeGenie.xcodeproj` in Xcode.
+4. For the Android app, open the project in Android Studio and then run the following commands (with an AVD up and running):
+
+```bash
+cd RecipeGenie
+
+cordova build android
+
+cordova emulate android
+```
+
+Note that if you have changed any part of code for the iOS app, you might have to run the following code and then re-run the app for the changes to take effect:
+```bash
+cd RecipeGenie
+
+cordova platform rm ios
+
+cordova platform add ios
+```
 
 ## Contributing
 We welcome contributions to the RecipeGenie app. Please read our [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to make contributions.
