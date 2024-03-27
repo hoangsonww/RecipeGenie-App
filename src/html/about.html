@@ -8,9 +8,24 @@
     <meta name="theme-color" content="#c67ee0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="manifest" href="../../manifest.json">
+    <link rel="icon" type="image/x-icon" href="../../utils/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+
+    <style>
+        #gitLink {
+            color: black;
+        }
+
+        .dark-mode #gitLink {
+            color: #ffffff;
+        }
+
+        #gitLink:hover {
+            color: #c67ee0;
+        }
+    </style>
 </head>
 
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZV7LT4762L"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
@@ -80,18 +95,59 @@
             </section>
             <section class="about-section">
                 <h2>About the Creator</h2>
-                <p>Visit my GitHub profile to see more of my works: <a style="color: black" href="https://github.com/hoangsonww"><p>Son Nguyen Hoang - GitHub Profile</p></a></p>
+                <p>RecipeGenie was developed by Son Nguyen, a passionate software developer with a love for cooking and technology. Son enjoys creating apps that simplify everyday tasks and bring joy to users.</p>
+                <p>Feel free to visit my <a id="gitLink" href="https://github.com/hoangsonww">GitHub profile</a> to see more of my works!</p>
                 <div style="width: 100%; text-align: center; margin-top: 50px">
                     <button style="font: inherit; cursor: pointer" onclick="window.location.href='mailto:info@movie-verse.com'">Contact Me</button>
                 </div>
             </section>
         </main>
+        <button id="dark-mode-toggle" class="dark-mode-toggle" title="Toggle Dark Mode">
+            <i class="fas fa-moon"></i>
+        </button>
         <footer>
             <button id="about-btn" style="font: inherit" onclick="window.location.href='../../index.html'">Back to App</button>
         </footer>
     </div>
 
     <script>
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+        function toggleDarkMode(enable) {
+            if (enable) {
+                document.body.classList.add('dark-mode');
+            }
+            else {
+                document.body.classList.remove('dark-mode');
+            }
+            localStorage.setItem('darkMode', enable);
+        }
+
+
+        function updateDarkMode(isDarkMode) {
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+            }
+            else {
+                document.body.classList.remove('dark-mode');
+            }
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+
+        function loadDarkModePreference() {
+            const darkModePreference = localStorage.getItem('darkMode');
+            if (darkModePreference !== null) {
+                updateDarkMode(darkModePreference === 'true');
+            }
+        }
+
+        darkModeToggle.addEventListener('click', function() {
+            const isDarkModeEnabled = document.body.classList.contains('dark-mode');
+            toggleDarkMode(!isDarkModeEnabled);
+        });
+
+        loadDarkModePreference();
+
         document.addEventListener('DOMContentLoaded', function() {
             function updateDarkMode(isDarkMode) {
                 if (isDarkMode) {

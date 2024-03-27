@@ -156,7 +156,7 @@ header button {
 }
 
 .meal-body .fav-btn.active {
-    color: rebeccapurple;
+    color: red;
 }
 
 .popup-container {
@@ -179,7 +179,7 @@ header button {
 .popup {
     background-color: #fff;
     border-radius: 5px;
-    padding: 0 2rem;
+    padding: 30px;
     position: relative;
     overflow: auto;
     max-height: 100vh;
@@ -195,6 +195,10 @@ header button {
     position: absolute;
     top: 1rem;
     right: 1rem;
+}
+
+.popup .close-popup:hover {
+    color: red;
 }
 
 .meal-info h1 {

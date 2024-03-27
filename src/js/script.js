@@ -58,7 +58,7 @@ function addMeal(mealData, random = false) {
 
     meal.innerHTML = `
         <div class="meal-header">
-            ${random ? `<span class="random"> Random Recipes </span>` : ""}
+            ${random ? `<span class="random">Recipe For You</span>` : ""}
             ${mealImage}
         </div>
         <div class="meal-body">
@@ -82,9 +82,11 @@ function addMeal(mealData, random = false) {
         }
         fetchFavMeals();
     });
+
     meal.addEventListener("click", () => {
         showMealInfo(mealData);
     });
+
     mealsEl.appendChild(meal);
 
     randomMealsFetched++;
@@ -175,7 +177,7 @@ document.getElementById('search-term').addEventListener('input', async function(
                 mealCard.classList.add('meal-card');
                 mealCard.innerHTML = `
                     <img src="${meal.strMealThumb}" alt="Image of ${meal.strMeal}">
-                    <div class="meal-name">${meal.strMeal}</div>
+                    <div class="meal-name" style="color: black">${meal.strMeal}</div>
                 `;
 
                 mealCard.addEventListener('click', async () => {
