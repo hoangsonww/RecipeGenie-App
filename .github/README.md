@@ -1,4 +1,4 @@
-# RecipeGenie App
+# The RecipeGenie App
 
 ---
 
