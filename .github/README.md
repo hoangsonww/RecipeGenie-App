@@ -106,4 +106,5 @@ RecipeGenie was created by a team of passionate developers and chefs. Special th
 This project is licensed under the MIT License - see the [LICENSE.md](../LICENSE) file for details.
 
 ---
+
 © 2024 RecipeGenie by Son (David) Nguyen. All Rights Reserved.
