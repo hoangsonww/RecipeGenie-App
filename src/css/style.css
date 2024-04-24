@@ -29,7 +29,8 @@ img {
     box-shadow: 0 0 10px 2px #3333331a;
     border-radius: 3px;
     overflow: hidden;
-    width: 500px;
+    width: 550px;
+    max-width: calc(100% - 20px);
 }
 
 header {
