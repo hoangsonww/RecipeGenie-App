@@ -28,11 +28,11 @@ RecipeGenie is a feature-rich, user-friendly web application designed to simplif
 
 To get started with RecipeGenie:
 1. Clone the repository:
-   ```
+   ```bash
    git clone https://github.com/hoangsonww/RecipeGenie-App.git
    ```
 2. Navigate to the project directory:
-   ```
+   ```bash
    cd RecipeGenie
    ```
 3. Simply open the `index.html` file in your preferred web browser.
@@ -106,4 +106,5 @@ RecipeGenie was created by a team of passionate developers and chefs. Special th
 This project is licensed under the MIT License - see the [LICENSE.md](../LICENSE) file for details.
 
 ---
-© 2024 RecipeGenie by Son (David) Nguyen. All Rights Reserved.
+
+© Created with ❤️ by [Son Nguyen](https://github.com/hoangsonww). All rights reserved.
