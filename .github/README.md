@@ -107,4 +107,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](../LICENSE
 
 ---
 
-© Created with ❤️ by [Son Nguyen](https://github.com/hoangsonww). All rights reserved.
+© Created with ❤️ by [Son Nguyen](https://github.com/hoangsonww). All rights reserved. Hope you enjoy using RecipeGenie! 🍽️
