@@ -674,7 +674,7 @@ function displayRecipeOfTheDay(recipe) {
             </div>
             <div class="meal-body">
                 <h4>${recipe.strMeal}</h4>
-                <button style="cursor: pointer" onclick="fetchAndShowMealInfo(${mealId})" class="detail-btn">View Details</button>
+                <button style="font: inherit; cursor: pointer" onclick="fetchAndShowMealInfo(${mealId})" class="detail-btn">View Details</button>
             </div>
         </div>
     `;
