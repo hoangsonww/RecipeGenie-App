@@ -11,6 +11,7 @@ const totalRandomMeals = 10;
 
 document.addEventListener('DOMContentLoaded', function() {
     const darkModePreference = localStorage.getItem('darkMode');
+
     if (darkModePreference !== null) {
         toggleDarkMode(darkModePreference === 'true');
     }
@@ -97,11 +98,13 @@ function addMeal(mealData, random = false) {
 
 function addMealLS(mealId) {
     const mealIds = getMealsLS();
+
     localStorage.setItem("mealIds", JSON.stringify([...mealIds, mealId]));
 }
 
 function removeMealLS(mealId) {
     const mealIds = getMealsLS();
+
     localStorage.setItem(
         "mealIds",
         JSON.stringify(mealIds.filter((id) => id !== mealId))
@@ -345,6 +348,7 @@ function toggleSideElements(show) {
     }
 
     const elements = document.querySelectorAll('.side-element');
+
     if (window.innerWidth >= 1230) {
         elements.forEach(el => el.style.display = 'block');
     }
@@ -371,6 +375,7 @@ function toggleDarkMode(enable) {
     else {
         document.body.classList.remove('dark-mode');
     }
+
     localStorage.setItem('darkMode', enable);
 }
 
@@ -386,98 +391,142 @@ function elizaResponse(message) {
     if (lowerMessage.includes("enable dark mode") || lowerMessage.includes("dark mode on")) {
         toggleDarkMode(true);
         return "Dark mode has been enabled.";
-    } else if (lowerMessage.includes("disable dark mode") || lowerMessage.includes("dark mode off")) {
+    }
+    else if (lowerMessage.includes("disable dark mode") || lowerMessage.includes("dark mode off")) {
         toggleDarkMode(false);
         return "Dark mode has been disabled.";
-    } else if (lowerMessage.includes("dark mode")) {
+    }
+    else if (lowerMessage.includes("dark mode")) {
         return "You can enable or disable dark mode by saying 'enable dark mode' or 'disable dark mode'.";
     }
 
     if (lowerMessage.includes("hello") || lowerMessage.includes("hi") || lowerMessage.includes("hey")) {
         return "Hello! Ready to cook something delicious with RecipeGenie? I can search for recipes for you, help you enable dark mode, and more!";
-    } else if (lowerMessage.includes("how are you")) {
+    }
+    else if (lowerMessage.includes("how are you")) {
         return "I'm excited to explore tasty recipes with you! What are you in the mood for?";
-    } else if (lowerMessage.includes("recipegenie")) {
+    }
+    else if (lowerMessage.includes("recipegenie")) {
         return "RecipeGenie is your culinary companion, offering a plethora of recipes tailored to your taste, dietary preferences, and cooking time!";
-    } else if (lowerMessage.includes("ingredient")) {
+    }
+    else if (lowerMessage.includes("ingredient")) {
         return "You can search for recipes based on the ingredients you have on hand! Just type them in, and I'll suggest a variety of dishes.";
-    } else if (lowerMessage.includes("dietary preference")) {
+    }
+    else if (lowerMessage.includes("dietary preference")) {
         return "Whether you’re vegan, vegetarian, gluten-free, or have other dietary requirements, RecipeGenie has a diverse collection of recipes for you!";
-    } else if (lowerMessage.includes("shopping list")) {
+    }
+    else if (lowerMessage.includes("shopping list")) {
         return "Every recipe comes with a detailed list of ingredients you can easily turn into a shopping list. Making grocery shopping a breeze!";
-    } else if (lowerMessage.includes("meal planning")) {
+    }
+    else if (lowerMessage.includes("meal planning")) {
         return "RecipeGenie is perfect for meal planning! Save your favorite recipes, and you’ll always have inspiration at your fingertips.";
-    } else if (lowerMessage.includes("dinner ideas")) {
+    }
+    else if (lowerMessage.includes("dinner ideas")) {
         return "Absolutely! Whether you're looking for something quick and easy or a gourmet meal, RecipeGenie has a variety of dinner ideas to explore.";
-    } else if (lowerMessage.includes("breakfast options")) {
+    }
+    else if (lowerMessage.includes("breakfast options")) {
         return "From smoothie bowls to classic pancakes, explore a wide range of breakfast recipes to start your day right!";
-    } else if (lowerMessage.includes("lunch ideas")) {
+    }
+    else if (lowerMessage.includes("lunch ideas")) {
         return "Discover a selection of lunch recipes that are both delicious and quick to prepare. Perfect for busy afternoons!";
-    } else if (lowerMessage.includes("dessert")) {
+    }
+    else if (lowerMessage.includes("dessert")) {
         return "Indulge in sweet treats from chocolate cakes to fruit tarts. RecipeGenie offers a variety of desserts to satisfy your cravings!";
-    } else if (lowerMessage.includes("snacks")) {
+    }
+    else if (lowerMessage.includes("snacks")) {
         return "Looking for something to munch on? Explore our snack recipes for quick bites that are both tasty and satisfying!";
-    } else if (lowerMessage.includes("healthy recipes")) {
+    }
+    else if (lowerMessage.includes("healthy recipes")) {
         return "Discover a range of nutritious recipes that don't compromise on flavor. Healthy eating has never been so exciting!";
-    } else if (lowerMessage.includes("international cuisine")) {
+    }
+    else if (lowerMessage.includes("international cuisine")) {
         return "Travel the world from your kitchen with RecipeGenie! Explore dishes from various cuisines globally.";
-    } else if (lowerMessage.includes("thank")) {
+    }
+    else if (lowerMessage.includes("thank")) {
         return "You're welcome! If you have more questions or need recipe inspiration, feel free to ask.";
-    } else if (lowerMessage.includes("who are you")) {
+    }
+    else if (lowerMessage.includes("who are you")) {
         return "I'm your RecipeGenie Assistant, ready to guide you to your next delicious meal!";
-    } else if (lowerMessage.includes("help")) {
+    }
+    else if (lowerMessage.includes("help")) {
         return "Absolutely! Tell me what you need, whether it’s recipe ideas, cooking tips, or navigating the RecipeGenie app.";
-    } else if (lowerMessage.includes("vegan")) {
+    }
+    else if (lowerMessage.includes("vegan")) {
         return "Absolutely! RecipeGenie has a multitude of vegan recipes that are both delicious and satisfying. Just search 'vegan' to explore them!";
-    } else if (lowerMessage.includes("save recipe")) {
+    }
+    else if (lowerMessage.includes("save recipe")) {
         return "Using RecipeGenie, you can save your favorite recipes for easy access later. Just click on the 'Save' option on any recipe you love!";
-    } else if (lowerMessage.includes("share recipe")) {
+    }
+    else if (lowerMessage.includes("share recipe")) {
         return "Found a recipe you love? You can easily share it with friends and family using the 'Share' option!";
-    } else if (lowerMessage.includes("drink") || lowerMessage.includes("beverage")) {
+    }
+    else if (lowerMessage.includes("drink") || lowerMessage.includes("beverage")) {
         return "While RecipeGenie focuses on delicious meals, we also have a selection of drink recipes to complement your meals!";
-    } else if (lowerMessage.includes("allergies") || lowerMessage.includes("allergic")) {
+    }
+    else if (lowerMessage.includes("allergies") || lowerMessage.includes("allergic")) {
         return "Safety first! Always review the ingredients in recipes to ensure they don’t contain allergens specific to you or anyone you're cooking for.";
-    } else if (lowerMessage.includes("kids") || lowerMessage.includes("children")) {
+    }
+    else if (lowerMessage.includes("kids") || lowerMessage.includes("children")) {
         return "Cooking for the little ones? RecipeGenie has kid-friendly recipes that are both nutritious and appealing to younger taste buds!";
-    } else if (lowerMessage.includes("quick meals") || lowerMessage.includes("fast recipes")) {
+    }
+    else if (lowerMessage.includes("quick meals") || lowerMessage.includes("fast recipes")) {
         return "In a rush? RecipeGenie offers a variety of recipes that can be made in 30 minutes or less. Perfect for those busy days!";
-    } else if (lowerMessage.includes("seasonal recipes") || lowerMessage.includes("holidays")) {
+    }
+    else if (lowerMessage.includes("seasonal recipes") || lowerMessage.includes("holidays")) {
         return "RecipeGenie also provides seasonal recipes perfect for holidays and special occasions. Check out our 'Seasonal' section!";
-    } else if (lowerMessage.includes("baking")) {
+    }
+    else if (lowerMessage.includes("baking")) {
         return "Got a sweet tooth? Dive into our baking section for cakes, pies, cookies, and more. Perfect for all your dessert desires!";
-    } else if (lowerMessage.includes("cooking tips") || lowerMessage.includes("kitchen hacks")) {
+    }
+    else if (lowerMessage.includes("cooking tips") || lowerMessage.includes("kitchen hacks")) {
         return "Need some help in the kitchen? Alongside our recipes, RecipeGenie offers cooking tips and tricks to enhance your culinary skills!";
-    } else if (lowerMessage.includes("nutrition") || lowerMessage.includes("healthy")) {
+    }
+    else if (lowerMessage.includes("nutrition") || lowerMessage.includes("healthy")) {
         return "RecipeGenie not only focuses on taste but also on nutrition. We aim to provide balanced recipes to ensure you're nourishing your body right!";
-    } else if (lowerMessage.includes("how does it work") || lowerMessage.includes("how to use")) {
+    }
+    else if (lowerMessage.includes("how does it work") || lowerMessage.includes("how to use")) {
         return "Simply enter what you're craving or the ingredients you have on hand into the search bar. RecipeGenie will then suggest recipes tailored just for you!";
-    } else if (lowerMessage.includes("breakfast")) {
+    }
+    else if (lowerMessage.includes("breakfast")) {
         return "Looking for a morning treat? RecipeGenie has a wide range of breakfast recipes to kickstart your day. From pancakes to omelettes, we've got you covered!";
-    } else if (lowerMessage.includes("lunch")) {
+    }
+    else if (lowerMessage.includes("lunch")) {
         return "Lunchtime cravings? RecipeGenie offers a plethora of lunch options from quick sandwiches to hearty salads!";
-    } else if (lowerMessage.includes("dinner")) {
+    }
+    else if (lowerMessage.includes("dinner")) {
         return "Planning dinner? RecipeGenie can suggest a myriad of dinner recipes, from pasta dishes to grilled entrees. Bon appétit!";
-    } else if (lowerMessage.includes("dessert")) {
+    }
+    else if (lowerMessage.includes("dessert")) {
         return "Sweet cravings are no match for RecipeGenie! Dive into our collection of delectable desserts, from brownies to cheesecakes!";
-    } else if (lowerMessage.includes("snacks") || lowerMessage.includes("appetizers")) {
+    }
+    else if (lowerMessage.includes("snacks") || lowerMessage.includes("appetizers")) {
         return "Need a bite to snack on or appetizers for your party? RecipeGenie has a selection of tasty tidbits to keep hunger at bay!";
-    } else if (lowerMessage.includes("vegetarian")) {
+    }
+    else if (lowerMessage.includes("vegetarian")) {
         return "Yes! RecipeGenie has an extensive range of vegetarian recipes. Just input 'vegetarian' in the search to discover them!";
-    } else if (lowerMessage.includes("ingredient")) {
+    }
+    else if (lowerMessage.includes("ingredient")) {
         return "If you have a specific ingredient on hand, just type it into the search. RecipeGenie will show recipes that feature it!";
-    } else if (lowerMessage.includes("shopping list")) {
+    }
+    else if (lowerMessage.includes("shopping list")) {
         return "Found a recipe you like? RecipeGenie can automatically generate a shopping list for you. Making grocery shopping a breeze!";
-    } else if (lowerMessage.includes("meal planning")) {
+    }
+    else if (lowerMessage.includes("meal planning")) {
         return "With RecipeGenie, meal planning is effortless. You can plan your weekly meals and generate a consolidated shopping list in no time!";
-    } else if (lowerMessage.includes("world cuisine") || lowerMessage.includes("international dishes")) {
+    }
+    else if (lowerMessage.includes("world cuisine") || lowerMessage.includes("international dishes")) {
         return "Explore world cuisines with RecipeGenie! Whether you're craving Italian pasta, Japanese sushi, or Indian curry, we have recipes from every corner of the globe.";
-    } else if (lowerMessage.includes("spices") || lowerMessage.includes("herbs")) {
+    }
+    else if (lowerMessage.includes("spices") || lowerMessage.includes("herbs")) {
         return "Spices and herbs can elevate any dish! RecipeGenie offers tips on how to use them to bring out the best flavors in your meals.";
-    } else if (lowerMessage.includes("cooking for one") || lowerMessage.includes("single serving")) {
+    }
+    else if (lowerMessage.includes("cooking for one") || lowerMessage.includes("single serving")) {
         return "Cooking for just yourself? RecipeGenie has single-serving recipes, ensuring no wastage and just the right portion!";
-    } else if (lowerMessage.includes("large group") || lowerMessage.includes("party")) {
+    }
+    else if (lowerMessage.includes("large group") || lowerMessage.includes("party")) {
         return "Hosting a party or cooking for a large group? RecipeGenie can suggest recipes perfect for feeding a crowd.";
-    } else {
+    }
+    else {
         return "I'm here to help with any questions or needs related to RecipeGenie. Could you please provide more details or try a different question?";
     }
 }
@@ -509,6 +558,7 @@ let isMinimized = true;
 
 chatbotBody.style.display = "none";
 chatbotInput.style.display = "none";
+
 minimizeBtn.innerHTML = '<i class="fas fa-window-maximize"></i>';
 minimizeBtn.setAttribute('title', 'Maximize chatbot');
 document.getElementById('chatbotHeader').style.borderRadius = '8px';
@@ -532,6 +582,7 @@ minimizeBtn.addEventListener("click", function() {
     }
     isMinimized = !isMinimized;
 });
+
 const seasonalRecipes = {
     spring: ['salad', 'asparagus', 'lemon chicken'],
     summer: ['grilled', 'avocado', 'berries'],
