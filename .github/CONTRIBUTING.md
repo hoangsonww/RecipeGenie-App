@@ -1,6 +1,6 @@
 # Contributing to RecipeGenie App
 
-First and foremost, thank you for considering contributing to StickyNotes App! Your time and skills are valuable to us, and we appreciate any help you can provide to make this app better for everyone. Whether you're fixing a bug, adding a new feature, or improving the documentation, your contribution is essential.
+First and foremost, thank you for considering contributing to RecipeGenie! Your time and skills are valuable to us, and we appreciate any help you can provide to make this app better for everyone. Whether you're fixing a bug, adding a new feature, or improving the documentation, your contribution is essential.
 
 ## Code of Conduct
 
@@ -19,14 +19,14 @@ Bugs are tracked as GitHub issues. To report a bug, please follow these guidelin
 
 ### Suggesting Enhancements
 
-This section guides you through submitting an enhancement suggestion for StickyNotes App, including completely new features and minor improvements to existing functionality.
+This section guides you through submitting an enhancement suggestion for RecipeGenie, including completely new features and minor improvements to existing functionality.
 
 1. **Use the GitHub issue search** to check if the enhancement has already been suggested.
 2. If it hasn't, **open a new issue**. Provide a **clear title and description**, as detailed as possible and if possible, include **examples** of how the enhancement would work.
 
 ### Your First Code Contribution
 
-Unsure where to begin contributing to StickyNotes App? Look for the `good first issue` label in the issues section, which is a great start for newcomers.
+Unsure where to begin contributing to RecipeGenie? Look for the `good first issue` label in the issues section, which is a great start for newcomers.
 
 ### Pull Requests
 
@@ -68,6 +68,6 @@ This section lists the labels we use to help us track and manage issues and pull
 
 ## Conclusion
 
-Contributions to StickyNotes App are greatly appreciated and vital for its continuous development. By participating in this project, you agree to abide by its terms. Thank you for your contributions – happy coding!
+Contributions to RecipeGenie are greatly appreciated and vital for its continuous development. By participating in this project, you agree to abide by its terms. Thank you for your contributions – happy coding!
 
 ---
