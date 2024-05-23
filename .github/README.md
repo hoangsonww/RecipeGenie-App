@@ -12,7 +12,7 @@ RecipeGenie is a feature-rich, user-friendly web application designed to simplif
 
 <p align="center" style="cursor: pointer">
   <a href="https://hoangsonww.github.io/RecipeGenie-App/">
-    <img src="../utils/recipegenie.png" alt="The RecipeGenie App Interface" width="100%" />
+    <img src="../utils/recipegenie.png" alt="The RecipeGenie App Interface" width="100%" style="border-radius: 8px" />
   </a>
 </p>
 
