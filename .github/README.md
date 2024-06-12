@@ -53,7 +53,6 @@ To get started with RecipeGenie:
 - JavaScript
 - Node.js
 - React
-- ReactNative (for mobile app)
 - Swift (for iOS app)
 - Kotlin (for Android app)
 - Java (for Android app)
