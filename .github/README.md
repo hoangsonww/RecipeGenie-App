@@ -1,7 +1,5 @@
 # The RecipeGenie App
 
----
-
 ## Overview
 
 RecipeGenie is a feature-rich, user-friendly web application designed to simplify and enhance the cooking experience. Whether you're a seasoned chef or just starting in the kitchen, RecipeGenie offers a range of functionalities to cater to your culinary needs. From discovering new recipes to managing cooking times with an integrated timer, RecipeGenie is your go-to digital cooking assistant.
@@ -110,4 +108,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](../LICENSE
 
 Created with ❤️ by [Son Nguyen](https://github.com/hoangsonww) in 2023. Hope you enjoy using RecipeGenie! 🍽️ 
 
-Let's get cooking! 🍳
+Let's cook! 🍳
