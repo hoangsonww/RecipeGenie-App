@@ -26,7 +26,7 @@ RecipeGenie is a feature-rich, user-friendly web application designed to simplif
 
 ## Installation
 
-To get started with RecipeGenie:
+To get started with **RecipeGenie**:
 1. Clone the repository:
    ```bash
    git clone https://github.com/hoangsonww/RecipeGenie-App.git
