@@ -107,5 +107,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](../LICENSE
 ---
 
 Created with ❤️ by [Son Nguyen](https://github.com/hoangsonww) in 2023. Hope you enjoy using RecipeGenie! 🍽️
-
-Let's cook! 🍳
