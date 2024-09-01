@@ -17,6 +17,8 @@ RecipeGenie is a mobile application designed to help users discover new recipes 
 
 ## Installation
 
+**Important: Ensure you are using Java 17!**
+
 ### iOS
 1. Clone the repository.
 2. Open `RecipeGenie.xcodeproj` in Xcode.
