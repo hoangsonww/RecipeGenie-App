@@ -31,11 +31,16 @@ To get started with **RecipeGenie**:
    ```bash
    git clone https://github.com/hoangsonww/RecipeGenie-App.git
    ```
-2. Navigate to the project directory:
+2. Navigate to the project directory and install all required dependencies:
    ```bash
    cd RecipeGenie-Mobile
+   npm install
    ```
 3. Simply open the `index.html` file in your preferred web browser.
+   Alternatively, you can host the project on a local server using tools like `http-server`:
+   ```bash
+   npm start
+   ```
 
 ## Usage
 
