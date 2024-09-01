@@ -6,12 +6,17 @@
   "main": "index.js",
   "scripts": {
     "install": "npm install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server -o",
+    "build": "npm run start",
+    "test": "http-server -o",
+    "serve": "http-server -o"
   },
   "keywords": [
     "recipe",
     "food",
-    "cooking"
+    "cooking",
+    "database",
+    "app"
   ],
   "author": "Son Nguyen",
   "license": "MIT",
@@ -24,6 +29,7 @@
     "cordova-ios": "^7.0.1",
     "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
+    "http-server": "^14.1.1",
     "nodemon": "^3.0.2",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",

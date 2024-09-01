@@ -72,7 +72,7 @@ To get started with the mobile app:
 4. For the Android app, open the project in Android Studio and then run the following commands (with an AVD up and running):
 
 ```bash
-cd RecipeGenie-Mobile-Mobile
+cd RecipeGenie-Mobile
 
 cordova build android
 
@@ -81,7 +81,7 @@ cordova emulate android
 
 Note that if you have changed any part of code for the iOS app, you might have to run the following code and then re-run the app for the changes to take effect:
 ```bash
-cd RecipeGenie-Mobile-Mobile
+cd RecipeGenie-Mobile
 
 cordova platform rm ios
 
