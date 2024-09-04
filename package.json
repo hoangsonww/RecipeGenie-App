@@ -5,7 +5,7 @@
   "description": "A recipe database for all your cooking needs",
   "main": "index.js",
   "scripts": {
-    "install": "npm install",
+    "install-deps": "npm install",
     "start": "http-server -o",
     "build": "npm run start",
     "test": "http-server -o",
