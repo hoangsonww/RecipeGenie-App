@@ -22,6 +22,9 @@
   ],
   "author": "Son Nguyen",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hoangsonww/RecipeGenie-App/issues",
+  },
   "devDependencies": {
     "@babel/core": "^7.23.6",
     "@babel/preset-env": "^7.23.6",
