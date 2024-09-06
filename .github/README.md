@@ -21,7 +21,7 @@ RecipeGenie is a feature-rich, user-friendly web application designed to simplif
 - **Favorites Management**: Save and manage your favorite recipes for quick access.
 - **Cooking Timer**: In-app cooking timer to help you keep track of your cooking.
 - **Social Sharing**: Share your favorite recipes with friends and family on social media.
-- **Responsive Design**: Enjoy a seamless experience on both desktop and mobile devices.
+- **Responsive Design**: Enjoy a seamless experience on both desktop and mobile devices with our mobile-friendly design.
 - **Interactive Chatbot**: Get assistance and suggestions from our RecipeGenie chatbot.
 
 ## Installation
