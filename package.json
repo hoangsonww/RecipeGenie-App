@@ -22,6 +22,10 @@
   ],
   "author": "Son Nguyen",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoangsonww/RecipeGenie-App.git",
+  },
   "bugs": {
     "url": "https://github.com/hoangsonww/RecipeGenie-App/issues",
   },
