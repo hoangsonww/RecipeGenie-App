@@ -67,7 +67,11 @@ To get started with **RecipeGenie**:
 
 ## Mobile Apps
 
-RecipeGenie is also available as a mobile application for both iOS and Android. The mobile app offers a seamless user experience and additional features such as meal planning, cooking conversions, and an interactive chatbot. The app is developed using Swift, Kotlin, Java, and React Native to ensure a consistent and engaging experience across platforms.
+RecipeGenie is also available as a mobile application for both iOS and Android. The mobile app offers a seamless user experience and additional features such as meal planning, cooking conversions, and an interactive chatbot. The app is developed using Swift, Kotlin, Java, and Apache Cordova to ensure a consistent and engaging experience across platforms.
+
+<p align="center" style="cursor: pointer">
+  <img src="../utils/mobile-ui.png" alt="The RecipeGenie App Mobile Interface" width="50%" style="border-radius: 8px" />
+</p>
 
 To get started with the mobile app:
 
