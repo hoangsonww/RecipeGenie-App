@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 Not Found - RecipeGenie App</title>
+    <meta name="theme-color" content="#c67ee0" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: #ece9e6;
+        background: -webkit-linear-gradient(to right, #ffffff, #ece9e6);
+        background: linear-gradient(to right, #ffffff, #ece9e6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        min-height: 100vh;
+      }
+
+      .mobile-container {
+        background-color: #fff;
+        box-shadow: 0 0 10px 2px #3333331a;
+        border-radius: 3px;
+        overflow: hidden;
+        width: 500px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      header h1 {
+        color: #e07ed0;
+      }
+
+      .content p {
+        color: #333;
+        font-size: 1rem;
+        margin: 10px 0;
+      }
+
+      button {
+        background-color: #c67ee0;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif;
+        margin-top: 20px;
+      }
+
+      button:hover {
+        background-color: #e07ed0;
+      }
+
+      footer h6 {
+        margin-top: 30px;
+        color: #333;
+      }
+
+      .dark-mode {
+        background: #121212;
+        color: #ffffff;
+      }
+
+      .dark-mode .mobile-container {
+        background-color: #333333;
+        color: #ffffff;
+      }
+
+      .dark-mode header h1 {
+        color: #eab0ff;
+      }
+
+      .dark-mode .content p {
+        color: #ccc;
+      }
+
+      .dark-mode footer h6 {
+        color: #ccc;
+      }
+    </style>
+  </head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZV7LT4762L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-ZV7LT4762L');
+  </script>
+  <body>
+    <div class="mobile-container" style="border-radius: 16px">
+      <header>
+        <h1>404 - Page Not Found</h1>
+      </header>
+
+      <div class="content">
+        <p>Oops! The page you're looking for doesn't exist.</p>
+        <p>You may have mistyped the address or the page may have moved.</p>
+        <button onclick="window.location.href='https://hoangsonww.github.io/RecipeGenie-App/'">Return to Homepage</button>
+      </div>
+
+      <footer>
+        <h6>&copy; 2023 by Son (David) Nguyen</h6>
+      </footer>
+    </div>
+
+    <script>
+      function loadDarkMode() {
+        const darkMode = localStorage.getItem('darkMode') === 'true';
+        if (darkMode) {
+          document.body.classList.add('dark-mode');
+        }
+      }
+
+      loadDarkMode();
+    </script>
+  </body>
+</html>

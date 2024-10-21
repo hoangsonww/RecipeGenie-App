@@ -1,0 +1,21 @@
+{
+  "short_name": "RecipeGenie",
+  "name": "RecipeGenie App - Discover New Recipes",
+  "icons": [
+    {
+      "src": "utils/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "utils/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ece9e6",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#c67ee0"
+}

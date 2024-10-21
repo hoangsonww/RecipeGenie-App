@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About RecipeGenie</title>
+    <meta name="theme-color" content="#c67ee0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="manifest" href="../../manifest.json" />
+    <link rel="icon" type="image/x-icon" href="../../utils/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+
+    <style>
+      #gitLink {
+        color: black;
+      }
+
+      .dark-mode #gitLink {
+        color: #ffffff;
+      }
+
+      #gitLink:hover {
+        color: #c67ee0;
+      }
+    </style>
+  </head>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZV7LT4762L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-ZV7LT4762L');
+  </script>
+
+  <body>
+    <div class="mobile-container">
+      <header>
+        <h1 style="color: #c67ee0">About <span id="highlight">RecipeGenie</span> App</h1>
+      </header>
+      <main>
+        <section class="about-section">
+          <h2>Our Mission</h2>
+          <p>
+            RecipeGenie was created with the goal of making cooking and recipe discovery an easy, enjoyable experience for everyone, from novices to seasoned
+            chefs. Whether you're looking for inspiration for your next meal or need help with meal planning, RecipeGenie is here to assist!
+          </p>
+        </section>
+        <section class="about-section">
+          <h2>Features</h2>
+          <ul>
+            <li>Extensive Recipe Library: Access a wide variety of dishes from around the world.</li>
+            <li>Personalized Search: Find recipes based on ingredients you have or your dietary preferences.</li>
+            <li>Favorite Recipes: Save your beloved recipes for quick access anytime.</li>
+            <li>Cooking Timer: Keep track of your cooking with our built-in timer.</li>
+            <li>Social Sharing: Share your favorite recipes with friends and family on social media.</li>
+            <li>Note: This app works best with a laptop or a desktop!</li>
+          </ul>
+        </section>
+        <section class="about-section">
+          <h2>Explore More of Our Creations</h2>
+          <p class="about" style="text-align: center; color: #c67ee0">Discover our other innovative apps designed to enhance your digital experience:</p>
+
+          <div style="text-align: center">
+            <p>1. Dive into the world of cinema with our extensive movie database.</p>
+            <button style="font: inherit; cursor: pointer" onclick="window.location.href='https://hoangsonww.github.io/The-MovieVerse-Database/'">
+              MovieVerse Database
+            </button>
+          </div>
+
+          <div style="text-align: center">
+            <p>2. Organize your thoughts and tasks with our intuitive StickyNotes app:</p>
+            <button style="font: inherit; cursor: pointer" onclick="window.location.href='https://hoangsonww.github.io/The-StickyNotes-App/'">
+              StickyNotes App
+            </button>
+          </div>
+
+          <div style="text-align: center">
+            <p>3. Stay updated on the weather conditions with our user-friendly WeatherMate app:</p>
+            <button style="font: inherit; cursor: pointer" onclick="window.location.href='https://hoangsonww.github.io/WeatherMate-App/'">
+              WeatherMate App
+            </button>
+          </div>
+
+          <div style="text-align: center">
+            <p>4. Manage your tasks efficiently with our streamlined ToDo app:</p>
+            <button style="font: inherit; cursor: pointer" onclick="window.location.href='https://hoangsonww.github.io/The-ToDo-App/'">ToDo App</button>
+          </div>
+
+          <div style="text-align: center">
+            <p>5. Plan and get event countdowns with our comprehensive EventHorizon app:</p>
+            <button style="font: inherit; cursor: pointer" onclick="window.location.href='https://hoangsonww.github.io/The-Event-Horizon-App/'">
+              EventHorizon App
+            </button>
+          </div>
+        </section>
+        <section class="about-section">
+          <h2>Get In Touch</h2>
+          <p>Have suggestions or need support? Reach out to us at hoangson091104@gmail.com, and we'll be happy to help!</p>
+        </section>
+        <section class="about-section">
+          <h2>Join the Community</h2>
+          <p>Follow us on social media to stay updated with the latest features, cooking tips, and community events.</p>
+        </section>
+        <section class="about-section">
+          <h2>About the Creator</h2>
+          <p>
+            RecipeGenie was developed by Son Nguyen, a passionate software developer with a love for cooking and technology. Son enjoys creating apps that
+            simplify everyday tasks and bring joy to users.
+          </p>
+          <p>Feel free to visit my <a id="gitLink" href="https://github.com/hoangsonww">GitHub profile</a> to see more of my works!</p>
+          <div style="width: 100%; text-align: center; margin-top: 50px">
+            <button style="font: inherit; cursor: pointer" onclick="window.location.href='mailto:info@movie-verse.com'">Contact Me</button>
+          </div>
+        </section>
+      </main>
+      <button id="dark-mode-toggle" class="dark-mode-toggle" title="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+      </button>
+      <footer>
+        <button id="about-btn" style="font: inherit" onclick="window.location.href='../../index.html'">Back to App</button>
+      </footer>
+    </div>
+
+    <script>
+      const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+      function toggleDarkMode(enable) {
+        if (enable) {
+          document.body.classList.add('dark-mode');
+        } else {
+          document.body.classList.remove('dark-mode');
+        }
+        localStorage.setItem('darkMode', enable);
+      }
+
+      function updateDarkMode(isDarkMode) {
+        if (isDarkMode) {
+          document.body.classList.add('dark-mode');
+        } else {
+          document.body.classList.remove('dark-mode');
+        }
+        localStorage.setItem('darkMode', isDarkMode);
+      }
+
+      function loadDarkModePreference() {
+        const darkModePreference = localStorage.getItem('darkMode');
+        if (darkModePreference !== null) {
+          updateDarkMode(darkModePreference === 'true');
+        }
+      }
+
+      darkModeToggle.addEventListener('click', function () {
+        const isDarkModeEnabled = document.body.classList.contains('dark-mode');
+        toggleDarkMode(!isDarkModeEnabled);
+      });
+
+      loadDarkModePreference();
+
+      document.addEventListener('DOMContentLoaded', function () {
+        function updateDarkMode(isDarkMode) {
+          if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+          } else {
+            document.body.classList.remove('dark-mode');
+          }
+        }
+
+        function loadDarkModePreference() {
+          const darkModePreference = localStorage.getItem('darkMode');
+          if (darkModePreference !== null) {
+            updateDarkMode(darkModePreference === 'true');
+          }
+        }
+
+        loadDarkModePreference();
+      });
+    </script>
+  </body>
+</html>

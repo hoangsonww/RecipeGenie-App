@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The RecipeGenie App</title>
+    <link rel="manifest" href="manifest.json" />
+    <meta
+      name="description"
+      content="Discover new recipes and culinary inspirations with RecipeGenie App. Your ultimate guide for diverse, delicious meals and cooking tips."
+    />
+    <meta name="keywords" content="recipes, cooking, culinary, food, nutrition, cooking conversions, meal planning" />
+    <meta name="author" content="Son Nguyen Hoang" />
+    <meta name="robots" content="index, follow" />
+    <meta http-equiv="content-language" content="en" />
+    <meta name="rating" content="general" />
+    <meta name="theme-color" content="#c67ee0" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="apple-mobile-web-app-title" content="RecipeGenie" />
+    <meta name="twitter:title" content="RecipeGenie App - Your Ultimate Recipe Guide" />
+    <meta name="twitter:description" content="Find the perfect recipe for any occasion with RecipeGenie. Explore, cook, enjoy!" />
+    <meta name="twitter:image" content="https://hoangsonww.github.io/RecipeGenie-App/utils/image.png" />
+    <meta property="og:title" content="RecipeGenie App - Your Ultimate Recipe Guide" />
+    <meta property="og:description" content="Find the perfect recipe for any occasion with RecipeGenie. Explore, cook, enjoy!" />
+    <meta property="og:image" content="https://hoangsonww.github.io/RecipeGenie-App/utils/image.png" />
+    <meta property="og:url" content="https://hoangsonww.github.io/RecipeGenie-App/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="RecipeGenie App" />
+    <link rel="canonical" href="https://hoangsonww.github.io/RecipeGenie-App/" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <script src="src/js/script.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="utils/favicon.ico" />
+  </head>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZV7LT4762L"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-ZV7LT4762L');
+  </script>
+
+  <body>
+    <div class="mobile-container">
+      <div id="general-header" style="text-align: center">
+        <div id="app-header">
+          <a href="index.html" style="text-decoration: none; color: inherit; cursor: pointer">
+            <h1 class="h1" id="h1">The <span id="highlight">RecipeGenie</span> App</h1>
+          </a>
+
+          <h3 class="h3" id="h3">Your ultimate recipe generator</h3>
+
+          <header id="search-header">
+            <input type="text" id="search-term" placeholder="Search For Any Meal..." title="Press enter or click the search button to view all results" />
+            <button id="search" title="View all results" style="margin-top: -10px"><i class="fas fa-search"></i></button>
+          </header>
+
+          <div id="search-results-container"></div>
+
+          <button id="back-to-home-btn" class="hidden">Back to Homepage</button>
+        </div>
+      </div>
+
+      <div class="fav-container">
+        <h3 id="h3-1">Your Favorite Meals</h3>
+        <ul class="fav-meals" id="fav-meals" style="color: #121212"></ul>
+      </div>
+
+      <div class="recipe-of-the-day-container">
+        <h3 class="h3" style="color: black">Recipe of the Day</h3>
+        <div id="recipe-of-the-day"></div>
+      </div>
+
+      <div class="meals" id="meals"></div>
+
+      <div id="loadingIndicator" style="color: black" class="hidden">Fetching Meals...</div>
+
+      <div id="timer-container">
+        <h3 style="color: black">Cooking Timer</h3>
+        <input type="number" id="timer-input" placeholder="Enter minutes" min="1" />
+        <button id="timer-start-btn" style="font: inherit">Start</button>
+        <ul id="active-timers"></ul>
+      </div>
+
+      <button class="return-to-home-btn" id="get-more-btn" style="font: inherit">More Recipes for You</button>
+
+      <button id="scroll-top-btn" style="font: inherit">Scroll to Top</button>
+
+      <h5>Like this app? Take a look at its about page!</h5>
+
+      <button onclick="window.location.href='./src/html/about.html'" class="return-to-home-btn" style="font: inherit; margin-top: 25px">
+        About RecipeGenie
+      </button>
+
+      <h6>&copy; 2023 by Son (David) Nguyen</h6>
+    </div>
+
+    <div class="popup-container hidden" id="meal-popup">
+      <div class="popup">
+        <button id="close-popup" class="close-popup" title="Close Meal Popup">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="meal-info" id="meal-info"></div>
+      </div>
+    </div>
+
+    <div id="chatbotContainer" class="side-element">
+      <div id="chatbotHeader">
+        RecipeGenie Chatbot
+        <button id="minimizeChatbot" title="Minimize/Maximize Chat" style="float: right; background: none; border: none; margin-top: -12px">
+          <i class="fas fa-window-minimize"></i>
+        </button>
+      </div>
+      <div id="chatbotBody"></div>
+      <input id="chatbotInput" type="text" placeholder="Ask me something..." style="margin-bottom: -10px" />
+    </div>
+
+    <div id="tip-popover" class="hidden">
+      <p id="tip-content">Press the button for a tip!</p>
+      <button id="close-tip">Close</button>
+    </div>
+
+    <div id="clock" class="clock side-element">
+      <span id="clock-title">Local Time</span>
+      <span id="clock-time"></span>
+    </div>
+
+    <div id="conversion-tool" class="conversion-tool side-element">
+      <h3>Cooking Conversion Tool</h3>
+
+      <select id="conversion-type">
+        <option value="tablespoons-teaspoons">Tablespoons to Teaspoons</option>
+        <option value="teaspoons-tablespoons">Teaspoons to Tablespoons</option>
+        <option value="cups-milliliters">Cups to Milliliters</option>
+        <option value="milliliters-cups">Milliliters to Cups</option>
+        <option value="fahrenheit-celsius">Fahrenheit to Celsius</option>
+        <option value="celsius-fahrenheit">Celsius to Fahrenheit</option>
+        <option value="pounds-kilograms">Pounds to Kilograms</option>
+        <option value="kilograms-pounds">Kilograms to Pounds</option>
+        <option value="ounces-grams">Ounces to Grams</option>
+        <option value="grams-ounces">Grams to Ounces</option>
+        <option value="liters-quarts">Liters to Quarts</option>
+        <option value="quarts-liters">Quarts to Liters</option>
+        <option value="gallons-liters">Gallons to Liters</option>
+        <option value="liters-gallons">Liters to Gallons</option>
+        <option value="tablespoons-milliliters">Tablespoons to Milliliters</option>
+        <option value="milliliters-tablespoons">Milliliters to Tablespoons</option>
+      </select>
+      <input type="number" id="conversion-input" placeholder="Enter value" />
+      <button id="convert-btn" style="font: inherit">Convert</button>
+      <div id="conversion-result"></div>
+    </div>
+
+    <button id="dark-mode-toggle" class="dark-mode-toggle" title="Toggle Dark Mode">
+      <i class="fas fa-moon"></i>
+    </button>
+
+    <div id="flavor-pair-popover" class="side-element">
+      <h3>Flavor Pairing Guide</h3>
+      <input
+        type="text"
+        id="flavor-input"
+        placeholder="Enter an ingredient"
+        title="Please enter the entire name of your ingredient!"
+        style="align-self: center"
+      />
+      <div id="pair-results">Enter the <strong>complete</strong> name of an ingredient to see its pair.</div>
+    </div>
+  </body>
+</html>
