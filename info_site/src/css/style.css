@@ -18,6 +18,7 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   min-height: 100vh;
+  transition: background-color 0.3s ease;
 }
 
 img {
@@ -280,8 +281,6 @@ h5 {
   text-align: center;
   border-radius: 8px;
   border-bottom: none;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
 }
 
 #chatbotBody {
@@ -560,6 +559,7 @@ footer button:hover {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   max-width: 40vh;
+  text-align: center;
 }
 
 .seasonal-highlight {
@@ -799,11 +799,13 @@ select {
 .dark-mode {
   background: #121212;
   color: #ffffff;
+  transition: background-color 0.3s ease;
 }
 
 body.dark-mode {
   background: #121212;
   color: #ffffff;
+  transition: background 0.3s ease;
 }
 
 main.dark-mode .about-section p {
@@ -888,6 +890,7 @@ main.dark-mode .about-section p {
 body.dark-mode {
   background-color: #121212;
   color: #ffffff;
+  transition: background 0.3s ease;
 }
 
 body.dark-mode header h1 {
@@ -910,4 +913,59 @@ body.dark-mode footer button {
 
 body.dark-mode .about-section a {
   color: #eab0ff;
+}
+
+body.dark-mode .side-element {
+  background-color: #333 !important;
+  color: #fff;
+}
+
+body.dark-mode .side-element a {
+  color: #eab0ff;
+}
+
+body.dark-mode .side-element a:hover {
+  color: #c67ee0;
+}
+
+body.dark-mode .side-element h3 {
+  color: #eab0ff;
+}
+
+body.dark-mode .side-element p {
+  color: #ccc;
+}
+
+body.dark-mode #pair-results {
+  color: #fff;
+}
+
+.chatbot-message {
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  border-radius: 15px;
+  max-width: 80%;
+  word-wrap: break-word;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.chatbot-message.user {
+  background-color: #c67ee0;
+  color: #ffffff;
+  margin-left: auto;
+  margin-right: 0;
+  border-bottom-right-radius: 0;
+}
+
+.chatbot-message.assistant {
+  background-color: #ece9e6;
+  color: #2d2d2d;
+  margin-left: 0;
+  margin-right: auto;
+  border-bottom-left-radius: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }

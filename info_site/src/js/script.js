@@ -15,22 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (darkModePreference !== null) {
     toggleDarkMode(darkModePreference === 'true');
   }
-  sendWelcomeMessage();
 });
-
-function sendWelcomeMessage() {
-  const welcomeMessage = `Welcome to RecipeGenie! 🌟 Here's how to get started:
-    - To search for a recipe, type 'recipe for [your ingredient or dish]' and hit Enter.
-    - Say 'enable dark mode' or 'disable dark mode' to toggle the dark mode.
-    - Looking for something specific? Just type your query and I'll help you find it.
-    - You can also ask for cooking tips, nutritional advice, and more.
-    
-    If you need help at any point, just ask! Let's make cooking fun and easy. 🍳🥗`;
-
-  chatbotBody.innerHTML += `
-        <div style="text-align: left; margin-bottom: 10px; color: #000000;">${welcomeMessage}</div>
-    `;
-}
 
 async function getMealById(id) {
   showLoadingIndicator();
@@ -299,36 +284,14 @@ function resetToHomepage() {
 document.getElementById('back-to-home-btn').addEventListener('click', () => {
   const backToHomeBtn = document.getElementById('back-to-home-btn');
   backToHomeBtn.style.display = 'none';
+  const searchResultsContainer = document.getElementById('search-results-container');
+  searchResultsContainer.innerHTML = '';
   resetToHomepage();
 });
 
 popupCloseBtn.addEventListener('click', () => {
   mealPopup.classList.add('hidden');
 });
-
-function searchAndDisplayMeals(searchTerm) {
-  getMealsBySearch(searchTerm)
-    .then(meals => {
-      if (meals) {
-        mealsEl.innerHTML = '';
-        meals.forEach(meal => {
-          addMeal(meal);
-        });
-
-        addReloadButton();
-      } else {
-        chatbotBody.innerHTML += `
-                <div style="text-align: left; margin-bottom: 10px; color: #000000;">No recipes found for '${searchTerm}'. Please try a different search.</div>
-            `;
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching meals:', error);
-      chatbotBody.innerHTML += `
-            <div style="text-align: left; margin-bottom: 10px; color: #000000;">An error occurred while searching for recipes. Please try again later.</div>
-        `;
-    });
-}
 
 function toggleSideElements(show) {
   if (!mealPopup.classList.contains('hidden')) {
@@ -365,162 +328,48 @@ function toggleDarkMode(enable) {
   localStorage.setItem('darkMode', enable);
 }
 
-function elizaResponse(message) {
-  const lowerMessage = message.toLowerCase();
-
-  if (lowerMessage.startsWith('recipe for ')) {
-    const searchTerm = lowerMessage.replace('recipe for ', '');
-    searchAndDisplayMeals(searchTerm);
-    return `Searching for recipes for ${searchTerm}...`;
-  }
-
-  if (lowerMessage.includes('enable dark mode') || lowerMessage.includes('dark mode on')) {
-    toggleDarkMode(true);
-    return 'Dark mode has been enabled.';
-  } else if (lowerMessage.includes('disable dark mode') || lowerMessage.includes('dark mode off')) {
-    toggleDarkMode(false);
-    return 'Dark mode has been disabled.';
-  } else if (lowerMessage.includes('dark mode')) {
-    return "You can enable or disable dark mode by saying 'enable dark mode' or 'disable dark mode'.";
-  }
-
-  if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
-    return 'Hello! Ready to cook something delicious with RecipeGenie? I can search for recipes for you, help you enable dark mode, and more!';
-  } else if (lowerMessage.includes('how are you')) {
-    return "I'm excited to explore tasty recipes with you! What are you in the mood for?";
-  } else if (lowerMessage.includes('recipegenie')) {
-    return 'RecipeGenie is your culinary companion, offering a plethora of recipes tailored to your taste, dietary preferences, and cooking time!';
-  } else if (lowerMessage.includes('ingredient')) {
-    return "You can search for recipes based on the ingredients you have on hand! Just type them in, and I'll suggest a variety of dishes.";
-  } else if (lowerMessage.includes('dietary preference')) {
-    return 'Whether you’re vegan, vegetarian, gluten-free, or have other dietary requirements, RecipeGenie has a diverse collection of recipes for you!';
-  } else if (lowerMessage.includes('shopping list')) {
-    return 'Every recipe comes with a detailed list of ingredients you can easily turn into a shopping list. Making grocery shopping a breeze!';
-  } else if (lowerMessage.includes('meal planning')) {
-    return 'RecipeGenie is perfect for meal planning! Save your favorite recipes, and you’ll always have inspiration at your fingertips.';
-  } else if (lowerMessage.includes('dinner ideas')) {
-    return "Absolutely! Whether you're looking for something quick and easy or a gourmet meal, RecipeGenie has a variety of dinner ideas to explore.";
-  } else if (lowerMessage.includes('breakfast options')) {
-    return 'From smoothie bowls to classic pancakes, explore a wide range of breakfast recipes to start your day right!';
-  } else if (lowerMessage.includes('lunch ideas')) {
-    return 'Discover a selection of lunch recipes that are both delicious and quick to prepare. Perfect for busy afternoons!';
-  } else if (lowerMessage.includes('dessert')) {
-    return 'Indulge in sweet treats from chocolate cakes to fruit tarts. RecipeGenie offers a variety of desserts to satisfy your cravings!';
-  } else if (lowerMessage.includes('snacks')) {
-    return 'Looking for something to munch on? Explore our snack recipes for quick bites that are both tasty and satisfying!';
-  } else if (lowerMessage.includes('healthy recipes')) {
-    return "Discover a range of nutritious recipes that don't compromise on flavor. Healthy eating has never been so exciting!";
-  } else if (lowerMessage.includes('international cuisine')) {
-    return 'Travel the world from your kitchen with RecipeGenie! Explore dishes from various cuisines globally.';
-  } else if (lowerMessage.includes('thank')) {
-    return "You're welcome! If you have more questions or need recipe inspiration, feel free to ask.";
-  } else if (lowerMessage.includes('who are you')) {
-    return "I'm your RecipeGenie Assistant, ready to guide you to your next delicious meal!";
-  } else if (lowerMessage.includes('help')) {
-    return 'Absolutely! Tell me what you need, whether it’s recipe ideas, cooking tips, or navigating the RecipeGenie app.';
-  } else if (lowerMessage.includes('vegan')) {
-    return "Absolutely! RecipeGenie has a multitude of vegan recipes that are both delicious and satisfying. Just search 'vegan' to explore them!";
-  } else if (lowerMessage.includes('save recipe')) {
-    return "Using RecipeGenie, you can save your favorite recipes for easy access later. Just click on the 'Save' option on any recipe you love!";
-  } else if (lowerMessage.includes('share recipe')) {
-    return "Found a recipe you love? You can easily share it with friends and family using the 'Share' option!";
-  } else if (lowerMessage.includes('drink') || lowerMessage.includes('beverage')) {
-    return 'While RecipeGenie focuses on delicious meals, we also have a selection of drink recipes to complement your meals!';
-  } else if (lowerMessage.includes('allergies') || lowerMessage.includes('allergic')) {
-    return "Safety first! Always review the ingredients in recipes to ensure they don’t contain allergens specific to you or anyone you're cooking for.";
-  } else if (lowerMessage.includes('kids') || lowerMessage.includes('children')) {
-    return 'Cooking for the little ones? RecipeGenie has kid-friendly recipes that are both nutritious and appealing to younger taste buds!';
-  } else if (lowerMessage.includes('quick meals') || lowerMessage.includes('fast recipes')) {
-    return 'In a rush? RecipeGenie offers a variety of recipes that can be made in 30 minutes or less. Perfect for those busy days!';
-  } else if (lowerMessage.includes('seasonal recipes') || lowerMessage.includes('holidays')) {
-    return "RecipeGenie also provides seasonal recipes perfect for holidays and special occasions. Check out our 'Seasonal' section!";
-  } else if (lowerMessage.includes('baking')) {
-    return 'Got a sweet tooth? Dive into our baking section for cakes, pies, cookies, and more. Perfect for all your dessert desires!';
-  } else if (lowerMessage.includes('cooking tips') || lowerMessage.includes('kitchen hacks')) {
-    return 'Need some help in the kitchen? Alongside our recipes, RecipeGenie offers cooking tips and tricks to enhance your culinary skills!';
-  } else if (lowerMessage.includes('nutrition') || lowerMessage.includes('healthy')) {
-    return "RecipeGenie not only focuses on taste but also on nutrition. We aim to provide balanced recipes to ensure you're nourishing your body right!";
-  } else if (lowerMessage.includes('how does it work') || lowerMessage.includes('how to use')) {
-    return "Simply enter what you're craving or the ingredients you have on hand into the search bar. RecipeGenie will then suggest recipes tailored just for you!";
-  } else if (lowerMessage.includes('breakfast')) {
-    return "Looking for a morning treat? RecipeGenie has a wide range of breakfast recipes to kickstart your day. From pancakes to omelettes, we've got you covered!";
-  } else if (lowerMessage.includes('lunch')) {
-    return 'Lunchtime cravings? RecipeGenie offers a plethora of lunch options from quick sandwiches to hearty salads!';
-  } else if (lowerMessage.includes('dinner')) {
-    return 'Planning dinner? RecipeGenie can suggest a myriad of dinner recipes, from pasta dishes to grilled entrees. Bon appétit!';
-  } else if (lowerMessage.includes('dessert')) {
-    return 'Sweet cravings are no match for RecipeGenie! Dive into our collection of delectable desserts, from brownies to cheesecakes!';
-  } else if (lowerMessage.includes('snacks') || lowerMessage.includes('appetizers')) {
-    return 'Need a bite to snack on or appetizers for your party? RecipeGenie has a selection of tasty tidbits to keep hunger at bay!';
-  } else if (lowerMessage.includes('vegetarian')) {
-    return "Yes! RecipeGenie has an extensive range of vegetarian recipes. Just input 'vegetarian' in the search to discover them!";
-  } else if (lowerMessage.includes('ingredient')) {
-    return 'If you have a specific ingredient on hand, just type it into the search. RecipeGenie will show recipes that feature it!';
-  } else if (lowerMessage.includes('shopping list')) {
-    return 'Found a recipe you like? RecipeGenie can automatically generate a shopping list for you. Making grocery shopping a breeze!';
-  } else if (lowerMessage.includes('meal planning')) {
-    return 'With RecipeGenie, meal planning is effortless. You can plan your weekly meals and generate a consolidated shopping list in no time!';
-  } else if (lowerMessage.includes('world cuisine') || lowerMessage.includes('international dishes')) {
-    return "Explore world cuisines with RecipeGenie! Whether you're craving Italian pasta, Japanese sushi, or Indian curry, we have recipes from every corner of the globe.";
-  } else if (lowerMessage.includes('spices') || lowerMessage.includes('herbs')) {
-    return 'Spices and herbs can elevate any dish! RecipeGenie offers tips on how to use them to bring out the best flavors in your meals.';
-  } else if (lowerMessage.includes('cooking for one') || lowerMessage.includes('single serving')) {
-    return 'Cooking for just yourself? RecipeGenie has single-serving recipes, ensuring no wastage and just the right portion!';
-  } else if (lowerMessage.includes('large group') || lowerMessage.includes('party')) {
-    return 'Hosting a party or cooking for a large group? RecipeGenie can suggest recipes perfect for feeding a crowd.';
-  } else {
-    return "I'm here to help with any questions or needs related to RecipeGenie. Could you please provide more details or try a different question?";
-  }
-}
-
-const chatbotInput = document.getElementById('chatbotInput');
-const chatbotBody = document.getElementById('chatbotBody');
-
-chatbotInput.addEventListener('keydown', function (event) {
-  if (event.key === 'Enter') {
-    sendMessage(chatbotInput.value);
-    chatbotInput.value = '';
-  }
-});
-
-function sendMessage(message) {
-  chatbotBody.innerHTML += `
-        <div style="text-align: right; margin-bottom: 10px; color: black;">${message}</div>
-    `;
-  let botReply = elizaResponse(message);
-  setTimeout(() => {
-    chatbotBody.innerHTML += `
-            <div style="text-align: left; margin-bottom: 10px; color: #000000;">${botReply}</div>
-        `;
-  }, 1000);
-}
+// Example of consistent Font Awesome icons and styling:
 
 const minimizeBtn = document.getElementById('minimizeChatbot');
 let isMinimized = true;
 
+// Initially minimized
 chatbotBody.style.display = 'none';
 chatbotInput.style.display = 'none';
 
-minimizeBtn.innerHTML = '<i class="fas fa-window-maximize"></i>';
-minimizeBtn.setAttribute('title', 'Maximize chatbot');
+// Use fa-angle-up for "maximize" by default:
+minimizeBtn.innerHTML = '<i class="fas fa-angle-up"></i>';
+minimizeBtn.setAttribute('title', 'Maximize Chatbot');
+
+// Optional styling for the header border radius:
 document.getElementById('chatbotHeader').style.borderRadius = '8px';
 
+// Click to toggle
 minimizeBtn.addEventListener('click', function () {
-  minimizeBtn.style.paddingTop = '14px';
   if (isMinimized) {
+    // If minimized, we now show the chatbot body/input
     chatbotBody.style.display = 'block';
     chatbotInput.style.display = 'block';
-    minimizeBtn.innerHTML = '<i class="fas fa-window-minimize"></i>';
-    minimizeBtn.setAttribute('title', 'Minimize chatbot');
-    document.getElementById('chatbotHeader').style.borderRadius = '8px';
-    minimizeBtn.style.paddingTop = '14px !important';
+
+    // Change icon to fa-angle-down
+    minimizeBtn.innerHTML = '<i class="fas fa-angle-down"></i>';
+    minimizeBtn.setAttribute('title', 'Minimize Chatbot');
+    document.getElementById('chatbotHeader').style.borderBottomLeftRadius = '0';
+    document.getElementById('chatbotHeader').style.borderBottomRightRadius = '0';
   } else {
+    // Hide the chatbot body/input
     chatbotBody.style.display = 'none';
     chatbotInput.style.display = 'none';
-    minimizeBtn.innerHTML = '<i class="fas fa-window-maximize"></i>';
-    minimizeBtn.setAttribute('title', 'Maximize chatbot');
-    document.getElementById('chatbotHeader').style.borderRadius = '8px';
+
+    // Change icon to fa-angle-up
+    minimizeBtn.innerHTML = '<i class="fas fa-angle-up"></i>';
+    minimizeBtn.setAttribute('title', 'Maximize Chatbot');
+
+    // Restore border radius
+    document.getElementById('chatbotHeader').style.borderBottomLeftRadius = '8px';
+    document.getElementById('chatbotHeader').style.borderBottomRightRadius = '8px';
   }
+
   isMinimized = !isMinimized;
 });
 
@@ -730,6 +579,7 @@ setInterval(updateClock, 1000);
 document.getElementById('convert-btn').addEventListener('click', function () {
   const conversionType = document.getElementById('conversion-type').value;
   const valueToConvert = parseFloat(document.getElementById('conversion-input').value);
+  let resultUnit;
   let result;
   if (isNaN(valueToConvert)) {
     alert('Please enter a valid number.');
@@ -738,54 +588,70 @@ document.getElementById('convert-btn').addEventListener('click', function () {
   switch (conversionType) {
     case 'tablespoons-teaspoons':
       result = valueToConvert * 3;
+      resultUnit = 'teaspoons';
       break;
     case 'teaspoons-tablespoons':
       result = valueToConvert / 3;
+      resultUnit = 'tablespoons';
       break;
     case 'cups-milliliters':
       result = valueToConvert * 236.588;
+      resultUnit = 'milliliters';
       break;
     case 'milliliters-cups':
       result = valueToConvert / 236.588;
+      resultUnit = 'cups';
       break;
     case 'fahrenheit-celsius':
       result = ((valueToConvert - 32) * 5) / 9;
+      resultUnit = 'celsius';
       break;
     case 'celsius-fahrenheit':
       result = (valueToConvert * 9) / 5 + 32;
+      resultUnit = 'fahrenheit';
       break;
     case 'pounds-kilograms':
       result = valueToConvert * 0.453592;
+      resultUnit = 'kilograms';
       break;
     case 'kilograms-pounds':
       result = valueToConvert / 0.453592;
+      resultUnit = 'pounds';
       break;
     case 'ounces-grams':
       result = valueToConvert * 28.3495;
+      resultUnit = 'grams';
       break;
     case 'grams-ounces':
       result = valueToConvert / 28.3495;
+      resultUnit = 'ounces';
       break;
     case 'liters-quarts':
       result = valueToConvert * 1.05669;
+      resultUnit = 'quarts';
       break;
     case 'quarts-liters':
       result = valueToConvert / 1.05669;
+      resultUnit = 'liters';
       break;
     case 'gallons-liters':
       result = valueToConvert * 3.78541;
+      resultUnit = 'liters';
       break;
     case 'liters-gallons':
       result = valueToConvert / 3.78541;
+      resultUnit = 'gallons';
       break;
     case 'tablespoons-milliliters':
       result = valueToConvert * 14.7868;
+      resultUnit = 'milliliters';
       break;
     case 'milliliters-tablespoons':
       result = valueToConvert / 14.7868;
+      resultUnit = 'tablespoons';
       break;
   }
-  document.getElementById('conversion-result').textContent = `Result: ${result.toFixed(2)}`;
+  document.getElementById('conversion-result').textContent = `Result: ${result.toFixed(2)} ${resultUnit}`;
 });
 
 function getSeason() {
@@ -800,20 +666,6 @@ function getSeason() {
     return 'winter';
   }
 }
-
-// function updateSeasonalIngredients() {
-//     const season = getSeason();
-//     const ingredients = {
-//         spring: ['asparagus', 'peas', 'mint', 'strawberries', 'rhubarb'],
-//         summer: ['tomatoes', 'bell peppers', 'cucumbers', 'peaches', 'watermelon'],
-//         autumn: ['pumpkins', 'apples', 'sweet potatoes', 'brussels sprouts', 'cranberries'],
-//         winter: ['kale', 'citrus fruits', 'pomegranates', 'squash', 'beets']
-//     };
-//     const seasonalIngredientsElement = document.getElementById('seasonal-ingredients');
-//     seasonalIngredientsElement.textContent = ingredients[season].join(', ');
-// }
-//
-// updateSeasonalIngredients();
 
 const flavorPairs = {
   apple: 'cinnamon',
