@@ -1,9 +1,9 @@
 <?php
-// Database credentials
-$host = 'localhost';
+// Database credentials (these are placeholders - replace with your DB credentials!)
+$host = 'your_db_host';
 $dbname = 'recipegenie';
-$username = 'root';
-$password = '';
+$username = 'your_db_username';
+$password = 'your_db_password';
 
 // Create a connection
 $conn = new mysqli($host, $username, $password, $dbname);
